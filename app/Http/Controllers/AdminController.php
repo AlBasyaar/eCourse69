@@ -143,8 +143,11 @@ class AdminController extends Controller
      */
     public function courses()
     {
-        $courses = Course::with('mentor.user')->paginate(10);
+$courses = Course::with('mentor.user')
+    ->withCount('videos')
+    ->paginate(10);
         return view('admin.courses.index', compact('courses'));
+
     }
 
     /**

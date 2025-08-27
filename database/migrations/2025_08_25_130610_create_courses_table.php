@@ -13,6 +13,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->string('thumbnail_url')->nullable(); // Menambahkan kolom thumbnail
+            $table->string('price');
             $table->foreignId('mentor_id')->nullable()->constrained('mentors')->onDelete('set null'); // Relasi dengan mentor
             $table->timestamps();
         });

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->foreignId('mentor_id')->nullable()->constrained('mentors')->onDelete('set null'); // Mentor yang mengoreksi
             $table->string('file_path');
             $table->text('mentor_feedback')->nullable();
-            $table->enum('status', ['submitted', 'revisi', 'approved'])->default('submitted');
+            $table->enum('status', ['pending', 'accepted', 'rejected'])->default('pending');
             $table->timestamps();
         });
     }

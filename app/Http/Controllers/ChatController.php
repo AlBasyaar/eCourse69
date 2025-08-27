@@ -136,7 +136,7 @@ class ChatController extends Controller
      * @param  \App\Models\User  $otherUser (mentor jika user siswa, siswa jika user mentor)
      * @return \Illuminate\View\View
      */
-    public function showMentorChatDetail(User $otherUser)
+public function showMentorChatDetail(User $otherUser)
     {
         $user = Auth::user();
 
@@ -152,15 +152,14 @@ class ChatController extends Controller
 
         // Logika otorisasi
         if ($user->role === 'student' && $otherUser->role === 'mentor') {
-            // Siswa hanya bisa chat dengan mentor dari kursus yang dia ikuti
+            // Siswa hanya bisa chat dengan mentor dari kursus yang dia ikuti (tanpa memeriksa is_active)
             $hasCommonCourse = $user->courseAccesses()
-                                    ->where('is_active', true)
                                     ->whereHas('course', function ($q) use ($otherUser) {
                                         $q->where('mentor_id', $otherUser->mentor->id);
                                     })
                                     ->exists();
             if (!$hasCommonCourse) {
-                abort(403, 'Anda hanya dapat chat dengan mentor dari kursus yang Anda ikuti.');
+                abort(403, 'Anda hanya dapat chat dengan mentor dari kursus yang pernah Anda ikuti.');
             }
         } elseif ($user->role === 'mentor' && $otherUser->role === 'student') {
             // Mentor hanya bisa chat dengan siswa yang memiliki tugas dengannya
@@ -174,17 +173,16 @@ class ChatController extends Controller
             abort(403, 'Tidak diizinkan untuk chat personal antara peran ini.');
         }
 
-
         $messages = MentorChat::where(function ($query) use ($user, $otherUser) {
                                     $query->where('sender_id', $user->id)
                                           ->where('receiver_id', $otherUser->id);
                                 })
-                               ->orWhere(function ($query) use ($user, $otherUser) {
+                                ->orWhere(function ($query) use ($user, $otherUser) {
                                     $query->where('sender_id', $otherUser->id)
                                           ->where('receiver_id', $user->id);
                                 })
-                               ->orderBy('created_at', 'asc')
-                               ->get();
+                                ->orderBy('created_at', 'asc')
+                                ->get();
 
         return view('chats.mentor_chats.show', compact('otherUser', 'messages'));
     }
@@ -206,14 +204,14 @@ class ChatController extends Controller
 
         // Logika otorisasi (duplikasi dari showMentorChatDetail untuk keamanan)
         if ($user->role === 'student' && $receiver->role === 'mentor') {
+            // Siswa hanya bisa chat dengan mentor dari kursus yang dia ikuti (tanpa memeriksa is_active)
             $hasCommonCourse = $user->courseAccesses()
-                                    ->where('is_active', true)
                                     ->whereHas('course', function ($q) use ($receiver) {
                                         $q->where('mentor_id', $receiver->mentor->id);
                                     })
                                     ->exists();
             if (!$hasCommonCourse) {
-                abort(403, 'Anda hanya dapat mengirim pesan ke mentor dari kursus yang Anda ikuti.');
+                abort(403, 'Anda hanya dapat mengirim pesan ke mentor dari kursus yang pernah Anda ikuti.');
             }
         } elseif ($user->role === 'mentor' && $receiver->role === 'student') {
             $hasAssignment = FinalAssignment::where('mentor_id', $user->mentor->id)
@@ -234,4 +232,5 @@ class ChatController extends Controller
 
         return back()->with('success', 'Pesan berhasil dikirim.');
     }
+
 }

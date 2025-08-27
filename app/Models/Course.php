@@ -15,6 +15,7 @@ class Course extends Model
         'title',
         'description',
         'thumbnail_url', // Menambahkan 'thumbnail_url'
+        'price',         // Menambahkan 'price'
         'mentor_id'
     ];
 

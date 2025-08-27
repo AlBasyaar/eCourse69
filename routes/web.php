@@ -66,9 +66,9 @@ Route::middleware(['auth', 'role:mentor'])->prefix('mentor')->name('mentor.')->g
 
     // Video Management for Mentor (Sekarang menggunakan CourseVideoController)
     Route::get('courses/{course}/videos/create', [CourseVideoController::class, 'create'])->name('videos.create');
-    Route::post('courses/{course}/videos', [CourseVideoController::class, 'store'])->name('videos.store');
+    Route::post('courses/{course}/videos', [CourseVideoController::class, 'store'])->name('courses.videos.store');
     Route::get('videos/{courseVideo}/edit', [CourseVideoController::class, 'edit'])->name('videos.edit');
-    Route::put('videos/{courseVideo}', [CourseVideoController::class, 'update'])->name('videos.update');
+    Route::put('videos/{courseVideo}', [CourseVideoController::class, 'update'])->name('courses.videos.update');
     Route::delete('videos/{courseVideo}', [CourseVideoController::class, 'destroy'])->name('videos.delete');
 
 
@@ -96,7 +96,7 @@ Route::middleware(['auth'])->prefix('chats')->name('chats.')->group(function () 
     Route::get('course/{course}', [ChatController::class, 'showCourseChat'])->name('course.show');
     Route::post('course/{course}', [ChatController::class, 'sendCourseChatMessage'])->name('course.send');
 
-    Route::get('mentor', [ChatController::class, 'showMentorChats'])->name('mentor.index');
-    Route::get('mentor/{otherUser}', [ChatController::class, 'showMentorChatDetail'])->name('mentor.show');
-    Route::post('mentor/{receiver}', [ChatController::class, 'sendMentorChatMessage'])->name('mentor.send');
+    Route::get('mentor', [ChatController::class, 'showMentorChats'])->name('mentor_chats.index');
+    Route::get('mentor/{otherUser}', [ChatController::class, 'showMentorChatDetail'])->name('mentor_chats.show');
+    Route::post('mentor/{receiver}', [ChatController::class, 'sendMentorChatMessage'])->name('mentor_chats.send');
 });
