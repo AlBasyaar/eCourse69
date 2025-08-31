@@ -3,57 +3,104 @@
 @section('title', 'Login - Kursus Online')
 
 @section('content')
-<div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-md w-full space-y-8">
-        <div>
-            <div class="mx-auto h-12 w-12 flex items-center justify-center rounded-full bg-primary">
-                <i class="fas fa-graduation-cap text-white text-xl"></i>
+<style>
+body {
+    background-image: linear-gradient(to bottom right, #7C3AED, #3B82F6, #22D3EE);
+    margin: 0;
+    padding: 0;
+}
+</style>
+<!-- Full-width background container -->
+<div class="min-h-screen flex items-center justify-center p-4">
+    <!-- Main Card Container -->
+    <div class="bg-white rounded-3xl shadow-2xl flex max-w-4xl w-full overflow-hidden">
+        
+        <!-- Login Form Section - Left Side -->
+        <div class="w-full lg:w-1/2 p-8 lg:p-12 flex flex-col justify-center relative">
+            
+            <div class="space-y-6">
+                <div>
+                    <h1 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-2">Masuk</h1>
+                    <p class="text-gray-600">Masuk ke akun Anda</p>
+                </div>
+                
+                <form class="space-y-6" method="POST" action="{{ route('login') }}">
+                    @csrf
+                    <!-- Email Field -->
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                        <input id="email" name="email" type="email" required 
+                               class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 @error('email') border-red-500 @enderror" 
+                               placeholder="masukkan email" value="{{ old('email') }}">
+                        @error('email')
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    
+                    <!-- Password Field -->
+                    <div>
+                        <label for="password" class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                        <input id="password" name="password" type="password" required 
+                               class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 @error('password') border-red-500 @enderror" 
+                               placeholder="masukkan password">
+                        @error('password')
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <!-- Remember Me & Forgot Password -->
+                    <div class="flex items-center justify-between text-sm">
+                        <div class="flex items-center">
+                            <input id="remember" name="remember" type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                            <label for="remember" class="ml-2 text-gray-700">
+                                Ingatkan Saya
+                            </label>
+                        </div>
+                        <a href="#" class="text-blue-600 hover:text-blue-500 transition-colors">
+                            Lupa Password?
+                        </a>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="w-full py-3 px-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium rounded-xl transition-all duration-200 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                        Masuk
+                    </button>
+
+                    <!-- Link to Register -->
+                    <div class="text-center pt-4">
+                        <p class="text-sm text-gray-600">
+                            Belum punya akun?
+                            <a href="{{ route('register') }}" class="font-medium text-blue-600 hover:text-blue-500 transition-colors">
+                                Daftar
+                            </a>
+                        </p>
+                    </div>
+                </form>
             </div>
-            <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
-                Masuk ke akun Anda
-            </h2>
         </div>
-        <form class="mt-8 space-y-6" method="POST" action="{{ route('login') }}">
-            @csrf
-            <div class="rounded-md shadow-sm -space-y-px">
-                <div>
-                    <label for="email" class="sr-only">Email</label>
-                    <input id="email" name="email" type="email" required 
-                           class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm @error('email') border-red-500 @enderror" 
-                           placeholder="Email" value="{{ old('email') }}">
-                    @error('email')
-                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                    @enderror
-                </div>
-                <div>
-                    <label for="password" class="sr-only">Password</label>
-                    <input id="password" name="password" type="password" required 
-                           class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm @error('password') border-red-500 @enderror" 
-                           placeholder="Password">
-                    @error('password')
-                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                    @enderror
-                </div>
-            </div>
 
-            <div>
-                <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
-                    <span class="absolute left-0 inset-y-0 flex items-center pl-3">
-                        <i class="fas fa-sign-in-alt text-primary-light group-hover:text-primary-dark"></i>
-                    </span>
-                    Masuk
-                </button>
+        <!-- Illustration Section - Right Side -->
+        <div class="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-blue-50 to-purple-50 items-center justify-center p-4 relative">
+            <!-- Logo positioned at top right of illustration -->
+            <div class="absolute top-6 right-6 z-10">
+                <img src="https://res.cloudinary.com/dr5pehdsw/image/upload/v1752056700/69_uq1r75.png" alt="School Logo" class="w-16 h-16 object-contain">
             </div>
-
-            <div class="text-center">
-                <p class="text-sm text-gray-600">
-                    Belum punya akun? 
-                    <a href="{{ route('register') }}" class="font-medium text-primary hover:text-secondary">
-                        Daftar sekarang
-                    </a>
-                </p>
+            
+            <div class="w-full h-full flex flex-col items-center justify-center text-center space-y-4">
+                <!-- Main Illustration -->
+                <div class="flex-1 flex items-center justify-center">
+                    <img src="https://res.cloudinary.com/dr5pehdsw/image/upload/v1756307010/rafiki_gmpthz.png" alt="Login Illustration" class="w-full h-full max-w-none object-contain">
+                </div>
+                
+                <!-- Welcome Text -->
+                <div class="space-y-2 pb-8">
+                    <h2 class="text-xl font-bold text-gray-800">Selamat Datang Kembali!</h2>
+                    <p class="text-gray-600 text-sm px-4 leading-relaxed">
+                        Masuk ke akun Anda untuk melanjutkan pembelajaran
+                    </p>
+                </div>
             </div>
-        </form>
+        </div>
     </div>
 </div>
 @endsection

@@ -3,88 +3,128 @@
 @section('title', 'Register - Kursus Online')
 
 @section('content')
-<div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-md w-full space-y-8">
-        <div>
-            <div class="mx-auto h-12 w-12 flex items-center justify-center rounded-full bg-primary">
-                <i class="fas fa-user-plus text-white text-xl"></i>
+<style>
+body {
+    background-image: linear-gradient(to bottom right, #7C3AED, #3B82F6, #22D3EE);
+    margin: 0;
+    padding: 0;
+}
+</style>
+<!-- Full-width background container -->
+<div class="min-h-screen flex items-center justify-center p-4">
+    <!-- Main Card Container -->
+    <!-- PERUBAHAN UTAMA: Mengubah ukuran kartu dari max-w-5xl menjadi max-w-4xl untuk ukuran sedang -->
+    <div class="bg-white rounded-3xl shadow-2xl flex max-w-4xl w-full overflow-hidden">
+        
+        <!-- Register Form Section - Left Side -->
+        <div class="w-full lg:w-1/2 p-8 lg:p-12 flex flex-col justify-center relative">
+            
+            <div class="space-y-6">
+                <div>
+                    <h1 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-2">Daftar</h1>
+                    <p class="text-gray-600">Daftarkan diri Anda untuk memulai pembelajaran</p>
+                </div>
+                
+                <form class="space-y-5" method="POST" action="{{ route('register') }}">
+                    @csrf
+                    <!-- Name Field -->
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Nama Lengkap</label>
+                        <input id="name" name="name" type="text" required 
+                               class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 @error('name') border-red-500 @enderror" 
+                               placeholder="Masukkan nama lengkap" value="{{ old('name') }}">
+                        @error('name')
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    
+                    <!-- Email Field -->
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                        <input id="email" name="email" type="email" required 
+                               class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 @error('email') border-red-500 @enderror" 
+                               placeholder="Masukkan email" value="{{ old('email') }}">
+                        @error('email')
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <!-- Role Field -->
+                    <div>
+                        <label for="role" class="block text-sm font-medium text-gray-700 mb-2">Daftar sebagai</label>
+                        <select id="role" name="role" required 
+                                class="w-full px-4 py-3 border border-gray-300 bg-white rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 @error('role') border-red-500 @enderror">
+                            <option value="">Pilih peran</option>
+                            <option value="student" {{ old('role') == 'student' ? 'selected' : '' }}>Siswa</option>
+                            <option value="mentor" {{ old('role') == 'mentor' ? 'selected' : '' }}>Mentor</option>
+                        </select>
+                        @error('role')
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    
+                    <!-- Password Field -->
+                    <div>
+                        <label for="password" class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                        <input id="password" name="password" type="password" required 
+                               class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 @error('password') border-red-500 @enderror" 
+                               placeholder="Masukkan password">
+                        @error('password')
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    
+                    <!-- Confirm Password Field -->
+                    <div>
+                        <label for="password_confirmation" class="block text-sm font-medium text-gray-700 mb-2">Konfirmasi Password</label>
+                        <input id="password_confirmation" name="password_confirmation" type="password" required 
+                               class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200" 
+                               placeholder="Konfirmasi password">
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="w-full py-3 px-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium rounded-xl transition-all duration-200 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                        <span class="flex items-center justify-center">
+                            <i class="fas fa-user-plus mr-2"></i>
+                            Daftar
+                        </span>
+                    </button>
+
+                    <!-- Link to Login -->
+                    <div class="text-center pt-4">
+                        <p class="text-sm text-gray-600">
+                            Sudah punya akun?
+                            <a href="{{ route('login') }}" class="font-medium text-blue-600 hover:text-blue-500 transition-colors">
+                                Masuk sekarang
+                            </a>
+                        </p>
+                    </div>
+                </form>
             </div>
-            <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
-                Buat akun baru
-            </h2>
         </div>
-        <form class="mt-8 space-y-6" method="POST" action="{{ route('register') }}">
-            @csrf
-            <div class="space-y-4">
-                <div>
-                    <label for="name" class="block text-sm font-medium text-gray-700">Nama Lengkap</label>
-                    <input id="name" name="name" type="text" required 
-                           class="mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-primary focus:border-primary sm:text-sm @error('name') border-red-500 @enderror" 
-                           placeholder="Masukkan nama lengkap" value="{{ old('name') }}">
-                    @error('name')
-                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                    @enderror
+
+        <!-- Illustration Section - Right Side -->
+        <div class="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-blue-50 to-purple-50 items-center justify-center p-4 relative">
+            <!-- Logo positioned at top right of illustration -->
+            <div class="absolute top-6 right-6 z-10">
+                <img src="https://res.cloudinary.com/dr5pehdsw/image/upload/v1752056700/69_uq1r75.png" alt="School Logo" class="w-16 h-16 object-contain">
+            </div>
+            
+            <div class="w-full h-full flex flex-col items-center justify-center text-center space-y-4">
+                <!-- Main Illustration -->
+                <div class="flex-1 flex items-center justify-center">
+                    <img src="https://res.cloudinary.com/dr5pehdsw/image/upload/v1756307010/rafiki_gmpthz.png" alt="Register Illustration" class="w-full h-full max-w-none object-contain">
                 </div>
                 
-                <div>
-                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                    <input id="email" name="email" type="email" required 
-                           class="mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-primary focus:border-primary sm:text-sm @error('email') border-red-500 @enderror" 
-                           placeholder="Masukkan email" value="{{ old('email') }}">
-                    @error('email')
-                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                    @enderror
-                </div>
-
-                <div>
-                    <label for="role" class="block text-sm font-medium text-gray-700">Daftar sebagai</label>
-                    <select id="role" name="role" required 
-                            class="mt-1 block w-full px-3 py-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm @error('role') border-red-500 @enderror">
-                        <option value="">Pilih peran</option>
-                        <option value="student" {{ old('role') == 'student' ? 'selected' : '' }}>Siswa</option>
-                        <option value="mentor" {{ old('role') == 'mentor' ? 'selected' : '' }}>Mentor</option>
-                    </select>
-                    @error('role')
-                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                    @enderror
-                </div>
-                
-                <div>
-                    <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-                    <input id="password" name="password" type="password" required 
-                           class="mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-primary focus:border-primary sm:text-sm @error('password') border-red-500 @enderror" 
-                           placeholder="Masukkan password">
-                    @error('password')
-                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                    @enderror
-                </div>
-                
-                <div>
-                    <label for="password_confirmation" class="block text-sm font-medium text-gray-700">Konfirmasi Password</label>
-                    <input id="password_confirmation" name="password_confirmation" type="password" required 
-                           class="mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-primary focus:border-primary sm:text-sm" 
-                           placeholder="Konfirmasi password">
+                <!-- Welcome Text -->
+                <div class="space-y-2 pb-8">
+                    <h2 class="text-xl font-bold text-gray-800">Bergabunglah dengan Kami!</h2>
+                    <p class="text-gray-600 text-sm px-4 leading-relaxed">
+                        Daftarkan diri Anda dan mulai perjalanan pembelajaran yang menarik
+                    </p>
                 </div>
             </div>
-
-            <div>
-                <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
-                    <span class="absolute left-0 inset-y-0 flex items-center pl-3">
-                        <i class="fas fa-user-plus text-primary-light group-hover:text-primary-dark"></i>
-                    </span>
-                    Daftar
-                </button>
-            </div>
-
-            <div class="text-center">
-                <p class="text-sm text-gray-600">
-                    Sudah punya akun? 
-                    <a href="{{ route('login') }}" class="font-medium text-primary hover:text-secondary">
-                        Masuk sekarang
-                    </a>
-                </p>
-            </div>
-        </form>
+        </div>
     </div>
 </div>
 @endsection

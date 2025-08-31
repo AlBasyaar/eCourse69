@@ -61,18 +61,16 @@
                                         </div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">{{ $course->mentor->user->name }}</div>
-                                        <div class="text-sm text-gray-500">{{ $course->mentor->user->email }}</div>
+                                        <div class="text-sm text-gray-900">{{ $course->mentor?->user?->name ?? 'Mentor not found' }}</div>
+                                        <div class="text-sm text-gray-500">{{ $course->mentor?->user?->email ?? '' }}</div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="text-sm font-medium text-gray-900">Rp
                                             {{ number_format($course->price, 0, ',', '.') }}</div>
                                     </td>
-                                    @foreach ($courses as $course)
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">{{ $course->videos_count ?? 0 }} video</div>
-                                        </td>
-                                    @endforeach
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-900">{{ $course->videos_count ?? 0 }} video</div>
+                                    </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                         <div class="flex space-x-2">
                                             <a href="{{ route('admin.courses.edit', $course) }}"
