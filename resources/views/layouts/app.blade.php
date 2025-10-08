@@ -1,149 +1,273 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" id="html-root">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Kursus Online')</title>
+    <title>@yield('title', 'eCourse69')</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#4F46E5',
-                        secondary: '#6366F1',
-                        success: '#10B981',
-                        danger: '#EF4444',
-                        warning: '#F59E0B',
-                    },
-                    fontFamily: {
-                        'sans': ['Inter', 'system-ui', 'sans-serif']
-                    },
-                    animation: {
-                        'fade-in': 'fadeIn 0.5s ease-in-out',
-                        'slide-up': 'slideUp 0.3s ease-out',
-                        'bounce-soft': 'bounceSoft 2s infinite',
-                        'float': 'float 3s ease-in-out infinite',
-                        'glow': 'glow 2s ease-in-out infinite alternate',
-                    },
-                    boxShadow: {
-                        'soft': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-                        'medium': '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
-                        'large': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
-                        'glow': '0 0 20px rgba(79, 70, 229, 0.3)',
-                        'glow-lg': '0 0 40px rgba(79, 70, 229, 0.4)',
-                    }
-                },
-            },
-        };
-    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        body {
+            font-family: 'Inter', sans-serif;
         }
 
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        /* Light Mode Variables */
+        body.light-mode {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f9fafb;
+            --bg-tertiary: #f3f4f6;
+            --text-primary: #111827;
+            --text-secondary: #6b7280;
+            --text-tertiary: #4b5563;
+            --border-color: #e5e7eb;
+            --navbar-bg: rgba(255, 255, 255, 0.95);
+            --card-bg: #ffffff;
+            --input-bg: #ffffff;
+            --hover-bg: #f3f4f6;
         }
 
-        @keyframes bounceSoft {
-
-            0%,
-            20%,
-            50%,
-            80%,
-            100% {
-                transform: translateY(0);
-            }
-
-            40% {
-                transform: translateY(-5px);
-            }
-
-            60% {
-                transform: translateY(-3px);
-            }
+        /* Dark Mode Variables */
+        body.dark-mode {
+            --bg-primary: #111827;
+            --bg-secondary: #1f2937;
+            --bg-tertiary: #374151;
+            --text-primary: #f9fafb;
+            --text-secondary: #d1d5db;
+            --text-tertiary: #9ca3af;
+            --border-color: #374151;
+            --navbar-bg: rgba(31, 41, 55, 0.95);
+            --card-bg: #1f2937;
+            --input-bg: #374151;
+            --hover-bg: #374151;
         }
 
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0px);
-            }
-
-            50% {
-                transform: translateY(-10px);
-            }
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        @keyframes glow {
-            from {
-                box-shadow: 0 0 20px rgba(79, 70, 229, 0.3);
-            }
-
-            to {
-                box-shadow: 0 0 30px rgba(79, 70, 229, 0.6);
-            }
+        /* Global Text Colors */
+        body.light-mode {
+            color: #111827;
         }
 
-        .dropdown-menu {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            transform-origin: top right;
-            opacity: 0;
-            transform: scale(0.95) translateY(-10px);
+        body.dark-mode {
+            color: #f9fafb;
         }
 
-        .dropdown-menu.active {
-            opacity: 1;
-            transform: scale(1) translateY(0);
+        /* Headings */
+        body.light-mode h1,
+        body.light-mode h2,
+        body.light-mode h3,
+        body.light-mode h4,
+        body.light-mode h5,
+        body.light-mode h6 {
+            color: #111827;
         }
 
-        .glass-effect {
+        body.dark-mode h1,
+        body.dark-mode h2,
+        body.dark-mode h3,
+        body.dark-mode h4,
+        body.dark-mode h5,
+        body.dark-mode h6 {
+            color: #f9fafb;
+        }
+
+        /* Paragraphs and Text */
+        body.light-mode p,
+        body.light-mode span,
+        body.light-mode div {
+            color: #111827;
+        }
+
+        body.dark-mode p,
+        body.dark-mode span,
+        body.dark-mode div {
+            color: #f9fafb;
+        }
+
+        /* Cards */
+        body.light-mode .card,
+        body.light-mode [class*="bg-white"] {
+            background-color: #ffffff !important;
+            color: #111827 !important;
+        }
+
+        body.dark-mode .card,
+        body.dark-mode [class*="bg-white"]:not(.bg-white\/5):not(.bg-white\/10) {
+            background-color: #1f2937 !important;
+            color: #f9fafb !important;
+        }
+
+        /* Tables */
+        body.light-mode table {
+            color: #111827;
+        }
+
+        body.dark-mode table {
+            color: #f9fafb;
+        }
+
+        body.light-mode th {
+            background-color: #f9fafb;
+            color: #111827;
+        }
+
+        body.dark-mode th {
+            background-color: #374151;
+            color: #f9fafb;
+        }
+
+        body.light-mode td {
+            border-color: #e5e7eb;
+            color: #111827;
+        }
+
+        body.dark-mode td {
+            border-color: #374151;
+            color: #f9fafb;
+        }
+
+        /* Forms */
+        body.light-mode input,
+        body.light-mode textarea,
+        body.light-mode select {
+            background-color: #ffffff;
+            color: #111827;
+            border-color: #e5e7eb;
+        }
+
+        body.dark-mode input,
+        body.dark-mode textarea,
+        body.dark-mode select {
+            background-color: #374151;
+            color: #f9fafb;
+            border-color: #4b5563;
+        }
+
+        body.light-mode input::placeholder,
+        body.light-mode textarea::placeholder {
+            color: #9ca3af;
+        }
+
+        body.dark-mode input::placeholder,
+        body.dark-mode textarea::placeholder {
+            color: #6b7280;
+        }
+
+        /* Labels */
+        body.light-mode label {
+            color: #374151;
+        }
+
+        body.dark-mode label {
+            color: #d1d5db;
+        }
+
+        /* Button Visibility - CRITICAL FIX */
+        body.light-mode button,
+        body.light-mode .btn {
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+
+        /* Action Buttons in Light Mode */
+        body.light-mode .bg-blue-500,
+        body.light-mode .bg-blue-600,
+        body.light-mode button.bg-blue-500,
+        body.light-mode button.bg-blue-600,
+        body.light-mode a.bg-blue-500,
+        body.light-mode a.bg-blue-600 {
+            background-color: #2563eb !important;
+            color: #ffffff !important;
+            border: 1px solid #2563eb !important;
+        }
+
+        body.light-mode .bg-green-500,
+        body.light-mode .bg-green-600,
+        body.light-mode button.bg-green-500,
+        body.light-mode button.bg-green-600 {
+            background-color: #16a34a !important;
+            color: #ffffff !important;
+            border: 1px solid #16a34a !important;
+        }
+
+        body.light-mode .bg-red-500,
+        body.light-mode .bg-red-600,
+        body.light-mode button.bg-red-500,
+        body.light-mode button.bg-red-600 {
+            background-color: #dc2626 !important;
+            color: #ffffff !important;
+            border: 1px solid #dc2626 !important;
+        }
+
+        body.light-mode .bg-yellow-500,
+        body.light-mode .bg-yellow-600,
+        body.light-mode button.bg-yellow-500,
+        body.light-mode button.bg-yellow-600 {
+            background-color: #ca8a04 !important;
+            color: #ffffff !important;
+            border: 1px solid #ca8a04 !important;
+        }
+
+        body.light-mode .bg-purple-500,
+        body.light-mode .bg-purple-600 {
+            background-color: #9333ea !important;
+            color: #ffffff !important;
+            border: 1px solid #9333ea !important;
+        }
+
+        /* Hover Effects for Buttons in Light Mode */
+        body.light-mode .bg-blue-600:hover,
+        body.light-mode button.bg-blue-600:hover {
+            background-color: #1d4ed8 !important;
+            border-color: #1d4ed8 !important;
+        }
+
+        body.light-mode .bg-green-600:hover,
+        body.light-mode button.bg-green-600:hover {
+            background-color: #15803d !important;
+            border-color: #15803d !important;
+        }
+
+        body.light-mode .bg-red-600:hover,
+        body.light-mode button.bg-red-600:hover {
+            background-color: #b91c1c !important;
+            border-color: #b91c1c !important;
+        }
+
+        /* Icon Buttons */
+        body.light-mode .text-blue-600 {
+            color: #2563eb !important;
+        }
+
+        body.light-mode .text-green-600 {
+            color: #16a34a !important;
+        }
+
+        body.light-mode .text-red-600 {
+            color: #dc2626 !important;
+        }
+
+        body.light-mode .text-yellow-600 {
+            color: #ca8a04 !important;
+        }
+
+        /* Make sure form buttons are visible */
+        body.light-mode button[type="submit"],
+        body.light-mode button[type="button"],
+        body.light-mode input[type="submit"] {
+            opacity: 1 !important;
+            box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1) !important;
+        }
+
+        .navbar-glass {
+            background: var(--navbar-bg);
             backdrop-filter: blur(20px);
-            background: rgba(255, 255, 255, 0.95);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .navbar-item {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .navbar-item::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #4F46E5, #6366F1);
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
-        }
-
-        .navbar-item:hover::before,
-        .navbar-item.active::before {
-            width: 100%;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .mobile-menu {
@@ -154,328 +278,280 @@
         .mobile-menu.open {
             transform: translateX(0);
         }
+
+        .dropdown-menu {
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.2s, transform 0.2s;
+            pointer-events: none;
+        }
+
+        .dropdown-menu.active {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #3b82f6;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2563eb;
+        }
+
+        /* Specific fixes for Tailwind classes */
+        body.dark-mode .text-gray-900 {
+            color: #f9fafb !important;
+        }
+
+        body.dark-mode .text-gray-800 {
+            color: #f9fafb !important;
+        }
+
+        body.dark-mode .text-gray-700 {
+            color: #d1d5db !important;
+        }
+
+        body.dark-mode .text-gray-600 {
+            color: #9ca3af !important;
+        }
+
+        body.light-mode .dark\:text-white,
+        body.light-mode .dark\:text-gray-200,
+        body.light-mode .dark\:text-gray-300 {
+            color: #111827 !important;
+        }
+
+        /* Border colors */
+        body.light-mode [class*="border-gray"] {
+            border-color: #e5e7eb !important;
+        }
+
+        body.dark-mode [class*="border-gray"] {
+            border-color: #4b5563 !important;
+        }
+
+        /* Background fix for secondary elements */
+        body.dark-mode .bg-gray-50 {
+            background-color: #374151 !important;
+        }
+
+        body.dark-mode .bg-gray-100 {
+            background-color: #4b5563 !important;
+        }
+
+        /* Hover states */
+        body.light-mode .hover\:bg-gray-50:hover {
+            background-color: #f9fafb !important;
+        }
+
+        body.dark-mode .hover\:bg-gray-700:hover {
+            background-color: #374151 !important;
+        }
+
+        /* Ensure all action links are visible */
+        body.light-mode a[href*="edit"],
+        body.light-mode a[href*="delete"],
+        body.light-mode a[href*="create"],
+        body.light-mode a[href*="add"] {
+            opacity: 1 !important;
+        }
     </style>
 </head>
-
-<body class="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 min-h-screen font-sans">
-    <!-- Navigation -->
-    <nav class="glass-effect sticky top-0 z-50 border-b border-white/20 shadow-soft">
+<body class="light-mode">
+    <!-- Navbar -->
+    <nav class="navbar-glass sticky top-0 z-50 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20">
+            <div class="flex justify-between items-center h-16">
                 <!-- Logo -->
                 <div class="flex items-center">
-                    <a href="/" class="flex items-center space-x-3 group">
-                        <div class="relative">
-                            <div class="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-full blur opacity-70 animate-pulse group-hover:animate-glow"></div>
-                            <i class="fas fa-graduation-cap text-3xl text-primary relative z-10 group-hover:scale-110 transition-transform duration-300"></i>
+                    <a href="/" class="flex items-center space-x-2">
+                        <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-graduation-cap text-white text-xl"></i>
                         </div>
-                        <span class="text-2xl font-black bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
-                            eCourse69
-                        </span>
+                        <span class="text-xl font-bold">eCourse69</span>
                     </a>
                 </div>
 
-                <!-- Desktop Navigation Menu -->
-                @auth
-                <div class="hidden lg:flex items-center space-x-1">
-                    @if(Auth::user()->role === 'admin')
-                    <!-- Admin Navigation -->
-                    <a href="{{ route('admin.dashboard') }}" class="navbar-item px-4 py-2 rounded-xl text-gray-700 hover:text-primary hover:bg-primary/5 transition-all duration-300 font-medium">
-                        <i class="fas fa-tachometer-alt mr-2"></i>Dashboard
-                    </a>
-                    <a href="#" class="navbar-item px-4 py-2 rounded-xl text-gray-700 hover:text-primary hover:bg-primary/5 transition-all duration-300 font-medium">
-                        <i class="fas fa-users mr-2"></i>Kelola User
-                    </a>
-                    <a href="#" class="navbar-item px-4 py-2 rounded-xl text-gray-700 hover:text-primary hover:bg-primary/5 transition-all duration-300 font-medium">
-                        <i class="fas fa-book mr-2"></i>Kelola Kursus
-                    </a>
-                    <a href="#" class="navbar-item px-4 py-2 rounded-xl text-gray-700 hover:text-primary hover:bg-primary/5 transition-all duration-300 font-medium">
-                        <i class="fas fa-chart-bar mr-2"></i>Analytics
-                    </a>
-                    <a href="#" class="navbar-item px-4 py-2 rounded-xl text-gray-700 hover:text-primary hover:bg-primary/5 transition-all duration-300 font-medium">
-                        <i class="fas fa-cogs mr-2"></i>Settings
-                    </a>
-                    @elseif(Auth::user()->role === 'mentor')
-                    <!-- Mentor Navigation -->
-                    <a href="{{ route('mentor.dashboard') }}" class="navbar-item px-4 py-2 rounded-xl text-gray-700 hover:text-primary hover:bg-primary/5 transition-all duration-300 font-medium">
-                        <i class="fas fa-tachometer-alt mr-2"></i>Dashboard
-                    </a>
-                    <a href="#" class="navbar-item px-4 py-2 rounded-xl text-gray-700 hover:text-primary hover:bg-primary/5 transition-all duration-300 font-medium">
-                        <i class="fas fa-book-open mr-2"></i>Kursus Saya
-                    </a>
-                    <a href="#" class="navbar-item px-4 py-2 rounded-xl text-gray-700 hover:text-primary hover:bg-primary/5 transition-all duration-300 font-medium">
-                        <i class="fas fa-user-graduate mr-2"></i>Siswa
-                    </a>
-                    <a href="#" class="navbar-item px-4 py-2 rounded-xl text-gray-700 hover:text-primary hover:bg-primary/5 transition-all duration-300 font-medium">
-                        <i class="fas fa-comments mr-2"></i>Diskusi
-                    </a>
-                    <a href="#" class="navbar-item px-4 py-2 rounded-xl text-gray-700 hover:text-primary hover:bg-primary/5 transition-all duration-300 font-medium">
-                        <i class="fas fa-dollar-sign mr-2"></i>Earnings
-                    </a>
-                    @elseif(Auth::user()->role === 'student')
-                    <!-- Student Navigation -->
-                    <a href="{{ route('student.dashboard') }}" class="navbar-item px-4 py-2 rounded-xl text-gray-700 hover:text-primary hover:bg-primary/5 transition-all duration-300 font-medium">
-                        <i class="fas fa-tachometer-alt mr-2"></i>Dashboard
-                    </a>
-                    <a href="#" class="navbar-item px-4 py-2 rounded-xl text-gray-700 hover:text-primary hover:bg-primary/5 transition-all duration-300 font-medium">
-                        <i class="fas fa-search mr-2"></i>Jelajahi Kursus
-                    </a>
-                    <a href="#" class="navbar-item px-4 py-2 rounded-xl text-gray-700 hover:text-primary hover:bg-primary/5 transition-all duration-300 font-medium">
-                        <i class="fas fa-play-circle mr-2"></i>Kursus Saya
-                    </a>
-                    <a href="#" class="navbar-item px-4 py-2 rounded-xl text-gray-700 hover:text-primary hover:bg-primary/5 transition-all duration-300 font-medium">
-                        <i class="fas fa-certificate mr-2"></i>Sertifikat
-                    </a>
-                    <a href="#" class="navbar-item px-4 py-2 rounded-xl text-gray-700 hover:text-primary hover:bg-primary/5 transition-all duration-300 font-medium">
-                        <i class="fas fa-heart mr-2"></i>Wishlist
-                    </a>
-                    @endif
+                <!-- Center - Clock & Location (Desktop) -->
+                <div class="hidden lg:flex items-center space-x-6">
+                    <div class="flex items-center space-x-2 text-sm">
+                        <i class="far fa-clock"></i>
+                        <span id="realtime-clock">00:00:00</span>
+                    </div>
+                    <div class="h-4 w-px bg-gray-300"></div>
+                    <div class="flex items-center space-x-2 text-sm">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Waktu Indonesia Barat</span>
+                    </div>
                 </div>
 
-                <!-- Mobile Menu Button -->
-                <div class="lg:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="p-3 rounded-xl text-gray-700 hover:text-primary hover:bg-primary/5 transition-all duration-300">
-                        <i class="fas fa-bars text-xl"></i>
-                    </button>
-                </div>
-                @else
-                <!-- Guest Navigation -->
-                <div class="hidden lg:flex items-center space-x-1">
-                    <a href="#" class="navbar-item px-4 py-2 rounded-xl text-gray-700 hover:text-primary hover:bg-primary/5 transition-all duration-300 font-medium">
-                        <i class="fas fa-book mr-2"></i>Kursus
-                    </a>
-                    <a href="#" class="navbar-item px-4 py-2 rounded-xl text-gray-700 hover:text-primary hover:bg-primary/5 transition-all duration-300 font-medium">
-                        <i class="fas fa-users mr-2"></i>Mentor
-                    </a>
-                    <a href="#" class="navbar-item px-4 py-2 rounded-xl text-gray-700 hover:text-primary hover:bg-primary/5 transition-all duration-300 font-medium">
-                        <i class="fas fa-info-circle mr-2"></i>Tentang
-                    </a>
-                    <a href="#" class="navbar-item px-4 py-2 rounded-xl text-gray-700 hover:text-primary hover:bg-primary/5 transition-all duration-300 font-medium">
-                        <i class="fas fa-phone mr-2"></i>Kontak
-                    </a>
-                </div>
-                @endauth
-
-                <!-- User Profile / Auth Buttons -->
+                <!-- Right Side -->
                 <div class="flex items-center space-x-4">
-                    @auth
-
-                    <!-- Profile Dropdown -->
-                    <div class="relative">
-                        <button id="profile-dropdown-btn" class="flex items-center space-x-3 px-4 py-3 rounded-2xl bg-white/80 text-gray-700 hover:bg-white hover:text-primary hover:shadow-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/20 group">
-                            <div class="relative">
-                                <div class="w-8 h-8 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-                                    <i class="fas fa-user text-white text-sm"></i>
-                                </div>
-                                <div class="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white animate-bounce-soft"></div>
-                            </div>
-                            <div class="hidden sm:block text-left">
-                                <div class="font-semibold">{{ Auth::user()->name }}</div>
-                                <div class="text-xs text-gray-500 capitalize">{{ Auth::user()->role }}</div>
-                            </div>
-                            <i class="fas fa-chevron-down text-sm transition-transform duration-300 group-hover:rotate-180" id="dropdown-icon"></i>
-                        </button>
-
-                        <div id="profile-dropdown-menu" class="dropdown-menu hidden absolute right-0 mt-3 w-64 bg-white/95 backdrop-blur-xl rounded-3xl shadow-large py-3 z-50 border border-white/20">
-                            <!-- Profile Header -->
-                            <div class="px-6 py-4 border-b border-gray-100">
-                                <div class="flex items-center space-x-3">
-                                    <div class="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center">
-                                        <i class="fas fa-user text-white"></i>
-                                    </div>
-                                    <div>
-                                        <p class="font-semibold text-gray-900">{{ Auth::user()->name }}</p>
-                                        <p class="text-sm text-gray-500">{{ Auth::user()->email }}</p>
-                                        <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-primary/10 to-secondary/10 text-primary mt-1 capitalize">
-                                            <i class="fas fa-circle text-green-400 text-xs mr-1"></i>
-                                            {{ Auth::user()->role }}
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Menu Items -->
-                            <div class="py-2">
-                                <a href="#" class="flex items-center px-6 py-3 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-primary/10 hover:to-secondary/10 hover:text-primary transition-all duration-200">
-                                    <i class="fas fa-user-circle mr-3 text-primary"></i>
-                                    <span>Profil Saya</span>
-                                </a>
-                                <!-- Logout -->
-                                <div class="border-t border-gray-100 mt-2 pt-2">
-                                    <form method="POST" action="{{ route('logout') }}">
-                                        @csrf
-                                        <button type="submit" class="flex items-center w-full px-6 py-3 text-sm text-red-600 hover:bg-red-50 hover:text-red-700 transition-all duration-200 rounded-b-3xl">
-                                            <i class="fas fa-sign-out-alt mr-3"></i>
-                                            <span>Logout</span>
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    @else
-                    <!-- Guest Auth Buttons -->
-                    <div class="hidden lg:flex items-center space-x-4">
-                        <a href="{{ route('login') }}" class="text-gray-700 hover:text-primary font-semibold transition-colors duration-200 px-4 py-2 rounded-xl hover:bg-primary/5">
-                            <i class="fas fa-sign-in-alt mr-2"></i>Login
-                        </a>
-                        <a href="{{ route('register') }}" class="bg-gradient-to-r from-primary to-secondary text-white px-6 py-3 rounded-2xl hover:shadow-medium hover:-translate-y-0.5 transition-all duration-300 font-semibold">
-                            <i class="fas fa-user-plus mr-2"></i>Register
-                        </a>
-                    </div>
-
-                    <!-- Mobile Menu Button for Guests -->
-                    <div class="lg:hidden flex items-center">
-                        <button id="mobile-menu-btn" class="p-3 rounded-xl text-gray-700 hover:text-primary hover:bg-primary/5 transition-all duration-300">
-                            <i class="fas fa-bars text-xl"></i>
-                        </button>
-                    </div>
-                    @endauth
-                </div>
-            </div>
-        </div>
-
-        <!-- Mobile Navigation Menu -->
-        <div id="mobile-menu" class="mobile-menu lg:hidden fixed inset-y-0 left-0 w-80 bg-white/95 backdrop-blur-xl shadow-2xl z-50">
-            <div class="flex flex-col h-full">
-                <!-- Mobile Header -->
-                <div class="flex items-center justify-between p-6 border-b border-gray-200">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-10 h-10 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center">
-                            <i class="fas fa-graduation-cap text-white"></i>
-                        </div>
-                        <span class="text-xl font-bold text-gray-900">eCourse69</span>
-                    </div>
-                    <button id="mobile-menu-close" class="p-2 rounded-xl text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-all duration-200">
-                        <i class="fas fa-times text-xl"></i>
+                    <!-- Theme Toggle -->
+                    <button id="theme-toggle" class="p-2 rounded-lg transition-colors">
+                        <i class="fas fa-moon" id="theme-icon"></i>
                     </button>
-                </div>
 
-                <!-- Mobile Menu Content -->
-                <div class="flex-1 overflow-y-auto py-6">
-                    @auth
-                    <!-- User Info -->
-                    <div class="px-6 mb-6">
-                        <div class="flex items-center space-x-3 p-4 bg-gradient-to-r from-primary/5 to-secondary/5 rounded-2xl">
-                            <div class="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center">
-                                <i class="fas fa-user text-white"></i>
-                            </div>
-                            <div>
-                                <p class="font-semibold text-gray-900">{{ Auth::user()->name }}</p>
-                                <p class="text-sm text-gray-500 capitalize">{{ Auth::user()->role }}</p>
+                    @guest
+                    <!-- Login & Register Buttons -->
+                    <div class="hidden md:flex items-center space-x-3">
+                        <a href="{{ route('login') }}" class="px-6 py-2 text-sm font-medium hover:text-blue-600 transition-colors">
+                            Login
+                        </a>
+                        <a href="{{ route('register') }}" class="px-6 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg hover:from-blue-600 hover:to-blue-700 transition-all">
+                            Register
+                        </a>
+                    </div>
+
+                    <!-- Mobile Menu Button (Guest) -->
+                    <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    @else
+                    <!-- User Menu (Authenticated) -->
+                    <div class="hidden md:flex items-center space-x-4">
+                        <!-- Nav Links based on role -->
+                        @if(Auth::user()->role === 'admin')
+                        <a href="{{ route('admin.dashboard') }}" class="px-3 py-2 text-sm font-medium hover:text-blue-600 transition-colors">Dashboard</a>
+                        @elseif(Auth::user()->role === 'mentor')
+                        <a href="{{ route('mentor.dashboard') }}" class="px-3 py-2 text-sm font-medium hover:text-blue-600 transition-colors">Dashboard</a>
+                        @elseif(Auth::user()->role === 'student')
+                        <a href="{{ route('student.dashboard') }}" class="px-3 py-2 text-sm font-medium hover:text-blue-600 transition-colors">Dashboard</a>
+                        @endif
+
+                        <!-- Profile Dropdown -->
+                        <div class="relative">
+                            <button id="profile-btn" class="flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                                <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center">
+                                    <span class="text-white text-sm font-semibold">{{ substr(Auth::user()->name, 0, 1) }}</span>
+                                </div>
+                                <span class="text-sm font-medium">{{ Auth::user()->name }}</span>
+                                <i class="fas fa-chevron-down text-xs text-gray-500"></i>
+                            </button>
+
+                            <div id="profile-dropdown" class="dropdown-menu absolute right-0 mt-2 w-56 rounded-lg shadow-lg border py-2" style="background-color: var(--card-bg); border-color: var(--border-color);">
+                                <div class="px-4 py-3 border-b" style="border-color: var(--border-color);">
+                                    <p class="text-sm font-medium">{{ Auth::user()->name }}</p>
+                                    <p class="text-xs" style="color: var(--text-tertiary);">{{ Auth::user()->email }}</p>
+                                </div>
+                                <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700">
+                                    <i class="fas fa-user mr-2"></i>Profile
+                                </a>
+                                <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700">
+                                    <i class="fas fa-cog mr-2"></i>Settings
+                                </a>
+                                <form method="POST" action="{{ route('logout') }}" class="border-t mt-2 pt-2" style="border-color: var(--border-color);">
+                                    @csrf
+                                    <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20">
+                                        <i class="fas fa-sign-out-alt mr-2"></i>Logout
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Role-based Mobile Menu -->
-                    <div class="px-6 space-y-2">
-                        @if(Auth::user()->role === 'admin')
-                        <a href="{{ route('admin.dashboard') }}" class="flex items-center px-4 py-3 rounded-xl text-gray-700 hover:bg-primary/10 hover:text-primary transition-all duration-200">
-                            <i class="fas fa-tachometer-alt mr-3 text-primary"></i>Dashboard
-                        </a>
-                        <a href="#" class="flex items-center px-4 py-3 rounded-xl text-gray-700 hover:bg-primary/10 hover:text-primary transition-all duration-200">
-                            <i class="fas fa-users mr-3 text-primary"></i>Kelola User
-                        </a>
-                        <a href="#" class="flex items-center px-4 py-3 rounded-xl text-gray-700 hover:bg-primary/10 hover:text-primary transition-all duration-200">
-                            <i class="fas fa-book mr-3 text-primary"></i>Kelola Kursus
-                        </a>
-                        <a href="#" class="flex items-center px-4 py-3 rounded-xl text-gray-700 hover:bg-primary/10 hover:text-primary transition-all duration-200">
-                            <i class="fas fa-chart-bar mr-3 text-primary"></i>Analytics
-                        </a>
-                        <a href="#" class="flex items-center px-4 py-3 rounded-xl text-gray-700 hover:bg-primary/10 hover:text-primary transition-all duration-200">
-                            <i class="fas fa-cogs mr-3 text-primary"></i>Settings
-                        </a>
-                        @elseif(Auth::user()->role === 'mentor')
-                        <a href="{{ route('mentor.dashboard') }}" class="flex items-center px-4 py-3 rounded-xl text-gray-700 hover:bg-primary/10 hover:text-primary transition-all duration-200">
-                            <i class="fas fa-tachometer-alt mr-3 text-primary"></i>Dashboard
-                        </a>
-                        <a href="#" class="flex items-center px-4 py-3 rounded-xl text-gray-700 hover:bg-primary/10 hover:text-primary transition-all duration-200">
-                            <i class="fas fa-book-open mr-3 text-primary"></i>Kursus Saya
-                        </a>
-                        <a href="#" class="flex items-center px-4 py-3 rounded-xl text-gray-700 hover:bg-primary/10 hover:text-primary transition-all duration-200">
-                            <i class="fas fa-user-graduate mr-3 text-primary"></i>Siswa
-                        </a>
-                        <a href="#" class="flex items-center px-4 py-3 rounded-xl text-gray-700 hover:bg-primary/10 hover:text-primary transition-all duration-200">
-                            <i class="fas fa-comments mr-3 text-primary"></i>Diskusi
-                        </a>
-                        @elseif(Auth::user()->role === 'student')
-                        <a href="{{ route('student.dashboard') }}" class="flex items-center px-4 py-3 rounded-xl text-gray-700 hover:bg-primary/10 hover:text-primary transition-all duration-200">
-                            <i class="fas fa-tachometer-alt mr-3 text-primary"></i>Dashboard
-                        </a>
-                        <a href="#" class="flex items-center px-4 py-3 rounded-xl text-gray-700 hover:bg-primary/10 hover:text-primary transition-all duration-200">
-                            <i class="fas fa-search mr-3 text-primary"></i>Jelajahi Kursus
-                        </a>
-                        <a href="#" class="flex items-center px-4 py-3 rounded-xl text-gray-700 hover:bg-primary/10 hover:text-primary transition-all duration-200">
-                            <i class="fas fa-play-circle mr-3 text-primary"></i>Kursus Saya
-                        </a>
-                        <a href="#" class="flex items-center px-4 py-3 rounded-xl text-gray-700 hover:bg-primary/10 hover:text-primary transition-all duration-200">
-                            <i class="fas fa-certificate mr-3 text-primary"></i>Sertifikat
-                        </a>
-                        <a href="#" class="flex items-center px-4 py-3 rounded-xl text-gray-700 hover:bg-primary/10 hover:text-primary transition-all duration-200">
-                            <i class="fas fa-heart mr-3 text-primary"></i>Wishlist
-                        </a>
-                        @endif
-                    </div>
-
-                    <!-- Mobile Profile Actions -->
-                    <div class="px-6 mt-6 pt-6 border-t border-gray-200 space-y-2">
-                        <a href="#" class="flex items-center px-4 py-3 rounded-xl text-gray-700 hover:bg-primary/10 hover:text-primary transition-all duration-200">
-                            <i class="fas fa-user-circle mr-3 text-primary"></i>Profil Saya
-                        </a>
-                        <button type="submit" class="flex items-center w-full px-4 py-3 rounded-xl text-red-600 hover:bg-red-50 hover:text-red-700 transition-all duration-200">
-                            <i class="fas fa-sign-out-alt mr-3"></i>Logout
-                        </button>
-                        </form>
-                    </div>
-                    @else
-                    <!-- Guest Mobile Menu -->
-                    <div class="px-6 space-y-2">
-                        <a href="#" class="flex items-center px-4 py-3 rounded-xl text-gray-700 hover:bg-primary/10 hover:text-primary transition-all duration-200">
-                            <i class="fas fa-book mr-3 text-primary"></i>Kursus
-                        </a>
-                        <a href="#" class="flex items-center px-4 py-3 rounded-xl text-gray-700 hover:bg-primary/10 hover:text-primary transition-all duration-200">
-                            <i class="fas fa-users mr-3 text-primary"></i>Mentor
-                        </a>
-                        <a href="#" class="flex items-center px-4 py-3 rounded-xl text-gray-700 hover:bg-primary/10 hover:text-primary transition-all duration-200">
-                            <i class="fas fa-info-circle mr-3 text-primary"></i>Tentang
-                        </a>
-                        <a href="#" class="flex items-center px-4 py-3 rounded-xl text-gray-700 hover:bg-primary/10 hover:text-primary transition-all duration-200">
-                            <i class="fas fa-phone mr-3 text-primary"></i>Kontak
-                        </a>
-                    </div>
-
-                    <!-- Auth Buttons -->
-                    <div class="px-6 mt-6 pt-6 border-t border-gray-200 space-y-3">
-                        <a href="{{ route('login') }}" class="flex items-center justify-center px-6 py-3 rounded-xl border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300 font-semibold">
-                            <i class="fas fa-sign-in-alt mr-2"></i>Login
-                        </a>
-                        <a href="{{ route('register') }}" class="flex items-center justify-center px-6 py-3 rounded-xl bg-gradient-to-r from-primary to-secondary text-white hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 font-semibold">
-                            <i class="fas fa-user-plus mr-2"></i>Register
-                        </a>
-                    </div>
+                    <!-- Mobile Menu Button (Authenticated) -->
+                    <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
+                        <i class="fas fa-bars"></i>
+                    </button>
                     @endauth
+
+                    <!-- Contact Button -->
+                    <a href="#eCourse69" class="hidden lg:flex items-center px-6 py-2 text-sm font-medium text-white bg-gray-900 dark:bg-white dark:text-gray-900 rounded-lg hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors">
+                        Kontak
+                    </a>
+                </div>
+            </div>
+
+            <!-- Mobile Clock & Location -->
+            <div class="lg:hidden flex items-center justify-center space-x-4 py-2 border-t" style="border-color: var(--border-color);">
+                <div class="flex items-center space-x-2 text-xs">
+                    <i class="far fa-clock"></i>
+                    <span id="realtime-clock-mobile">00:00:00</span>
+                </div>
+                <div class="h-3 w-px bg-gray-300"></div>
+                <div class="text-xs">
+                    <i class="fas fa-map-marker-alt mr-1"></i>
+                    WIB
                 </div>
             </div>
         </div>
-
-        <!-- Mobile Menu Overlay -->
-        <div id="mobile-menu-overlay" class="lg:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-40 hidden"></div>
     </nav>
 
+    <!-- Mobile Menu Sidebar -->
+    <div id="mobile-menu" class="mobile-menu fixed inset-y-0 left-0 w-64 shadow-xl z-50 overflow-y-auto" style="background-color: var(--card-bg);">
+        <div class="p-6">
+            <div class="flex items-center justify-between mb-6">
+                <span class="text-xl font-bold">Menu</span>
+                <button id="mobile-menu-close" class="p-2 rounded-lg">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            @guest
+            <div class="space-y-3">
+                <a href="{{ route('login') }}" class="block px-4 py-3 text-center border rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700" style="border-color: var(--border-color);">
+                    Login
+                </a>
+                <a href="{{ route('register') }}" class="block px-4 py-3 text-center text-white bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg">
+                    Register
+                </a>
+            </div>
+            @else
+            <div class="space-y-2">
+                @if(Auth::user()->role === 'admin')
+                <a href="{{ route('admin.dashboard') }}" class="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
+                    <i class="fas fa-tachometer-alt mr-2"></i>Dashboard
+                </a>
+                @elseif(Auth::user()->role === 'mentor')
+                <a href="{{ route('mentor.dashboard') }}" class="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
+                    <i class="fas fa-tachometer-alt mr-2"></i>Dashboard
+                </a>
+                @elseif(Auth::user()->role === 'student')
+                <a href="{{ route('student.dashboard') }}" class="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
+                    <i class="fas fa-tachometer-alt mr-2"></i>Dashboard
+                </a>
+                @endif
+
+                <a href="#" class="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
+                    <i class="fas fa-user mr-2"></i>Profile
+                </a>
+                <form method="POST" action="{{ route('logout') }}" class="mt-4 pt-4 border-t" style="border-color: var(--border-color);">
+                    @csrf
+                    <button type="submit" class="block w-full text-left px-4 py-3 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg">
+                        <i class="fas fa-sign-out-alt mr-2"></i>Logout
+                    </button>
+                </form>
+            </div>
+            @endguest
+        </div>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 hidden"></div>
+
     <!-- Main Content -->
-    <main class="flex-1">
+    <main>
         <!-- Flash Messages -->
         @if(session('success'))
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
-            <div class="bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 text-green-800 px-6 py-4 rounded-2xl shadow-soft animate-slide-up" role="alert">
+            <div class="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 text-green-800 dark:text-green-200 px-6 py-4 rounded-lg shadow-sm" role="alert">
                 <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <i class="fas fa-check-circle text-green-500 text-xl"></i>
-                    </div>
-                    <div class="ml-3">
-                        <p class="font-medium">{{ session('success') }}</p>
-                    </div>
-                    <button class="ml-auto text-green-500 hover:text-green-700" onclick="this.parentElement.parentElement.remove()">
+                    <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                    <p class="font-medium">{{ session('success') }}</p>
+                    <button onclick="this.parentElement.parentElement.remove()" class="ml-auto text-green-500 hover:text-green-700">
                         <i class="fas fa-times"></i>
                     </button>
                 </div>
@@ -485,15 +561,11 @@
 
         @if(session('error'))
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
-            <div class="bg-gradient-to-r from-red-50 to-rose-50 border border-red-200 text-red-800 px-6 py-4 rounded-2xl shadow-soft animate-slide-up" role="alert">
+            <div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-800 dark:text-red-200 px-6 py-4 rounded-lg shadow-sm" role="alert">
                 <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <i class="fas fa-exclamation-circle text-red-500 text-xl"></i>
-                    </div>
-                    <div class="ml-3">
-                        <p class="font-medium">{{ session('error') }}</p>
-                    </div>
-                    <button class="ml-auto text-red-500 hover:text-red-700" onclick="this.parentElement.parentElement.remove()">
+                    <i class="fas fa-exclamation-circle text-red-500 mr-3"></i>
+                    <p class="font-medium">{{ session('error') }}</p>
+                    <button onclick="this.parentElement.parentElement.remove()" class="ml-auto text-red-500 hover:text-red-700">
                         <i class="fas fa-times"></i>
                     </button>
                 </div>
@@ -501,187 +573,114 @@
         </div>
         @endif
 
-        <div class="animate-fade-in">
-            @yield('content')
-        </div>
+        @yield('content')
     </main>
 
-    <!-- Enhanced Footer -->
-    <footer class="bg-gradient-to-br from-gray-900 to-black text-white relative overflow-hidden">
-        <div class="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]"></div>
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-            <div class="grid lg:grid-cols-4 gap-12">
-                <!-- Company Info -->
-                <div class="lg:col-span-2">
-                    <div class="flex items-center space-x-3 mb-6">
-                        <div class="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-2xl flex items-center justify-center">
-                            <i class="fas fa-graduation-cap text-white text-xl"></i>
-                        </div>
-                        <span class="text-2xl font-bold">eCourse69</span>
-                    </div>
-                    <p class="text-white/80 text-lg leading-relaxed mb-8 max-w-md">
-                        Platform pembelajaran online terdepan yang menghadirkan transformasi karier melalui pendidikan berkualitas tinggi dan teknologi inovatif.
-                    </p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center hover:bg-white/20 transition-all duration-300 hover:scale-110">
-                            <i class="fab fa-facebook text-white"></i>
-                        </a>
-                        <a href="#" class="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center hover:bg-white/20 transition-all duration-300 hover:scale-110">
-                            <i class="fab fa-instagram text-white"></i>
-                        </a>
-                        <a href="#" class="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center hover:bg-white/20 transition-all duration-300 hover:scale-110">
-                            <i class="fab fa-linkedin text-white"></i>
-                        </a>
-                        <a href="#" class="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center hover:bg-white/20 transition-all duration-300 hover:scale-110">
-                            <i class="fab fa-youtube text-white"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Quick Links -->
-                <div>
-                    <h3 class="text-lg font-bold mb-6">Quick Links</h3>
-                    <div class="space-y-3">
-                        <a href="#" class="block text-white/70 hover:text-white transition-colors duration-200">Tentang Kami</a>
-                        <a href="#" class="block text-white/70 hover:text-white transition-colors duration-200">Karier</a>
-                        <a href="#" class="block text-white/70 hover:text-white transition-colors duration-200">Blog</a>
-                        <a href="#" class="block text-white/70 hover:text-white transition-colors duration-200">Press Kit</a>
-                        <a href="#" class="block text-white/70 hover:text-white transition-colors duration-200">Partnership</a>
-                    </div>
-                </div>
-
-                <!-- Support -->
-                <div>
-                    <h3 class="text-lg font-bold mb-6">Support</h3>
-                    <div class="space-y-3">
-                        <a href="#" class="block text-white/70 hover:text-white transition-colors duration-200">Help Center</a>
-                        <a href="#" class="block text-white/70 hover:text-white transition-colors duration-200">Contact Support</a>
-                        <a href="#" class="block text-white/70 hover:text-white transition-colors duration-200">Privacy Policy</a>
-                        <a href="#" class="block text-white/70 hover:text-white transition-colors duration-200">Terms of Service</a>
-                        <a href="#" class="block text-white/70 hover:text-white transition-colors duration-200">Refund Policy</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="border-t border-white/20 pt-8 mt-12">
-                <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-                    <p class="text-white/70">&copy; 2025 eCourse69. All rights reserved.</p>
-                    <div class="flex items-center space-x-6">
-                        <span class="text-white/70 text-sm">Made with</span>
-                        <i class="fas fa-heart text-red-400 animate-pulse"></i>
-                        <span class="text-white/70 text-sm">in Jakarta, Indonesia</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Profile Dropdown
-            const dropdownBtn = document.getElementById('profile-dropdown-btn');
-            const dropdownMenu = document.getElementById('profile-dropdown-menu');
-            const dropdownIcon = document.getElementById('dropdown-icon');
+        // Real-time Clock Function
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const timeString = `${hours}:${minutes}:${seconds}`;
+            
+            const clockElement = document.getElementById('realtime-clock');
+            const clockMobileElement = document.getElementById('realtime-clock-mobile');
+            
+            if (clockElement) clockElement.textContent = timeString;
+            if (clockMobileElement) clockMobileElement.textContent = timeString;
+        }
 
-            // Mobile Menu
-            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const mobileMenuClose = document.getElementById('mobile-menu-close');
-            const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+        // Update clock every second
+        setInterval(updateClock, 1000);
+        updateClock(); // Initial call
 
-            // Toggle profile dropdown function
-            const toggleDropdown = () => {
-                if (!dropdownMenu) return;
-                const isHidden = dropdownMenu.classList.contains('hidden');
-                if (isHidden) {
-                    dropdownMenu.classList.remove('hidden');
-                    setTimeout(() => {
-                        dropdownMenu.classList.add('active');
-                        if (dropdownIcon) dropdownIcon.classList.add('rotate-180');
-                    }, 10);
-                } else {
-                    dropdownMenu.classList.remove('active');
-                    if (dropdownIcon) dropdownIcon.classList.remove('rotate-180');
-                    setTimeout(() => {
-                        dropdownMenu.classList.add('hidden');
-                    }, 300);
-                }
-            };
-
-            // Toggle mobile menu function
-            const toggleMobileMenu = () => {
-                if (!mobileMenu || !mobileMenuOverlay) return;
-                const isOpen = mobileMenu.classList.contains('open');
-                if (isOpen) {
-                    mobileMenu.classList.remove('open');
-                    mobileMenuOverlay.classList.add('hidden');
-                    document.body.classList.remove('overflow-hidden');
-                } else {
-                    mobileMenu.classList.add('open');
-                    mobileMenuOverlay.classList.remove('hidden');
-                    document.body.classList.add('overflow-hidden');
-                }
-            };
-
-            // Event listeners
-            if (dropdownBtn) {
-                dropdownBtn.addEventListener('click', toggleDropdown);
+        // Theme Toggle with immediate application
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        
+        // Check for saved theme preference or default to 'light'
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        // Apply theme immediately on page load
+        function applyTheme(theme) {
+            document.body.classList.remove('light-mode', 'dark-mode');
+            document.body.classList.add(theme + '-mode');
+            
+            if (theme === 'dark') {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
             }
+        }
 
-            if (mobileMenuBtn) {
-                mobileMenuBtn.addEventListener('click', toggleMobileMenu);
-            }
+        // Apply saved theme immediately
+        applyTheme(currentTheme);
 
-            if (mobileMenuClose) {
-                mobileMenuClose.addEventListener('click', toggleMobileMenu);
-            }
+        // Theme toggle click handler
+        themeToggle.addEventListener('click', () => {
+            const isDark = document.body.classList.contains('dark-mode');
+            const newTheme = isDark ? 'light' : 'dark';
+            
+            applyTheme(newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
 
-            if (mobileMenuOverlay) {
-                mobileMenuOverlay.addEventListener('click', toggleMobileMenu);
-            }
+        // Profile Dropdown
+        const profileBtn = document.getElementById('profile-btn');
+        const profileDropdown = document.getElementById('profile-dropdown');
+
+        if (profileBtn && profileDropdown) {
+            profileBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                profileDropdown.classList.toggle('active');
+            });
 
             // Close dropdown when clicking outside
-            document.addEventListener('click', (event) => {
-                if (dropdownBtn && dropdownMenu && !dropdownBtn.contains(event.target) && !dropdownMenu.contains(event.target)) {
-                    if (!dropdownMenu.classList.contains('hidden')) {
-                        dropdownMenu.classList.remove('active');
-                        if (dropdownIcon) dropdownIcon.classList.remove('rotate-180');
-                        setTimeout(() => {
-                            dropdownMenu.classList.add('hidden');
-                        }, 300);
-                    }
+            document.addEventListener('click', (e) => {
+                if (!profileBtn.contains(e.target) && !profileDropdown.contains(e.target)) {
+                    profileDropdown.classList.remove('active');
                 }
             });
+        }
 
-            // Close mobile menu on escape key
-            document.addEventListener('keydown', (event) => {
-                if (event.key === 'Escape' && mobileMenu && mobileMenu.classList.contains('open')) {
-                    toggleMobileMenu();
-                }
-            });
+        // Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
 
-            // Auto-hide flash messages after 5 seconds
-            const flashMessages = document.querySelectorAll('[role="alert"]');
-            flashMessages.forEach(message => {
-                setTimeout(() => {
-                    message.style.opacity = '0';
-                    message.style.transform = 'translateY(-20px)';
-                    setTimeout(() => {
-                        message.remove();
-                    }, 300);
-                }, 5000);
-            });
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle('open');
+            mobileMenuOverlay.classList.toggle('hidden');
+            document.body.classList.toggle('overflow-hidden');
+        }
 
-            // Add active class to current page nav item
-            const currentPath = window.location.pathname;
-            const navItems = document.querySelectorAll('.navbar-item');
-            navItems.forEach(item => {
-                if (item.getAttribute('href') === currentPath) {
-                    item.classList.add('active');
-                }
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+        }
+
+        if (mobileMenuClose) {
+            mobileMenuClose.addEventListener('click', toggleMobileMenu);
+        }
+
+        if (mobileMenuOverlay) {
+            mobileMenuOverlay.addEventListener('click', toggleMobileMenu);
+        }
+
+        // Auto-hide flash messages
+        setTimeout(() => {
+            const alerts = document.querySelectorAll('[role="alert"]');
+            alerts.forEach(alert => {
+                alert.style.opacity = '0';
+                alert.style.transform = 'translateY(-20px)';
+                alert.style.transition = 'all 0.3s ease';
+                setTimeout(() => alert.remove(), 300);
             });
-        });
+        }, 5000);
     </script>
 </body>
-
 </html>
