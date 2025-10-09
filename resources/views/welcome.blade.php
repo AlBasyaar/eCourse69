@@ -4,20 +4,21 @@
 
 @section('content')
 <!-- Hero Section -->
-<div class="relative bg-gradient-to-br from-blue-50 via-white to-purple-50 overflow-hidden">
-    <!-- Decorative Elements -->
-    <div class="absolute top-0 left-0 w-64 h-64 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
-    <div class="absolute bottom-0 right-0 w-64 h-64 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+<div class="relative from-blue-50 dark:from-gray-900 via-white dark:via-black to-purple-50 dark:to-purple-900/30 overflow-hidden">
+<div class="absolute top-0 left-0 w-64 h-64 bg-blue-200 dark:bg-blue-900 rounded-full filter blur-3xl opacity-20 dark:opacity-40 animate-blob"></div>
+<div class="absolute bottom-0 right-0 w-64 h-64 bg-purple-200 dark:bg-purple-900 rounded-full filter blur-3xl opacity-20 dark:opacity-40 animate-blob animation-delay-2000"></div>
+
+
 
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div class="text-center">
             <h1 class="text-4xl md:text-6xl font-extrabold mb-6">
-                <span class="text-gray-900">PILIHAN TERBAIK UNTUK</span>
+                <span class="text-gray-900 dark:text-gray-100">PILIHAN TERBAIK UNTUK</span>
                 <br>
-                <span class="bg-gradient-to-r from-blue-500 to-blue-600 bg-clip-text text-transparent">MENINGKATKAN SKILL ANDA!</span>
+                <span class="bg-gradient-to-r from-blue-500 to-blue-600 dark:from-blue-400 dark:to-blue-500 bg-clip-text text-transparent">MENINGKATKAN SKILL ANDA!</span>
             </h1>
 
-            <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-12">
+            <p class="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto mb-12">
                 Jelajahi berbagai kursus di bidang Desain Grafis, Pemrograman, dan IT NSA untuk meraih karier impian Anda.
             </p>
 
@@ -27,7 +28,7 @@
                     Mulai Belajar Sekarang
                     <i class="fas fa-arrow-right ml-2"></i>
                 </a>
-                <a href="{{ route('login') }}" class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-blue-600 bg-white border-2 border-blue-600 rounded-lg hover:bg-blue-50 transition-all duration-300">
+                <a href="{{ route('login') }}" class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-blue-600 bg-white border-2 border-blue-600 rounded-lg hover:bg-blue-50 transition-all duration-300 dark:text-blue-400 dark:bg-gray-800 dark:border-blue-500 dark:hover:bg-gray-700">
                     <i class="fas fa-sign-in-alt mr-2"></i>
                     Login
                 </a>

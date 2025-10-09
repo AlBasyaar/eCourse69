@@ -41,7 +41,7 @@
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
                             @foreach ($courses as $course)
-                                <tr class="hover:bg-gray-50">
+                                <tr class="hover:bg-gray-700">
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex items-center">
                                             @if ($course->thumbnail)

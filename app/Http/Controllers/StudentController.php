@@ -58,7 +58,7 @@ class StudentController extends Controller
         // Jika siswa belum punya akses atau aksesnya tidak aktif
         if (!$courseAccess || !$courseAccess->is_active) {
             // Redirect ke halaman pembayaran atau notifikasi WhatsApp admin
-            $adminWhatsAppLink = 'https://wa.me/6281234567890?text=' . urlencode("Halo admin, saya ingin mengaktifkan kursus '{$course->title}'. ID kursus: {$course->id}, ID user: " . Auth::id());
+            $adminWhatsAppLink = 'https://wa.me/6283816927804?text=' . urlencode("Halo admin, saya ingin mengaktifkan kursus '{$course->title}'. ID kursus: {$course->id}, ID user: " . Auth::id());
             return redirect($adminWhatsAppLink);
             // Atau tampilkan view dengan tombol ke WhatsApp
             // return view('student.courses.locked', compact('course', 'adminWhatsAppLink'));

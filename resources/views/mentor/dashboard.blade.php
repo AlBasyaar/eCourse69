@@ -37,7 +37,7 @@
 
         <div class="bg-white rounded-lg shadow p-6">
             <div class="flex items-center">
-                <div class="p-3 rounded-full bg-green-100 text-green-600">
+                <div class="p-3 rounded-full  bg-green-100  text-green-600">
                     <i class="fas fa-tasks text-xl"></i>
                 </div>
                 <div class="ml-4">
@@ -93,7 +93,7 @@
                 </h3>
             </div>
             <div class="p-6 space-y-4">
-                <a href="{{ route('mentor.courses.index') }}" class="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition duration-300">
+                <a href="{{ route('mentor.courses.index') }}" class="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-700 transition duration-300">
                     <div class="h-10 w-10 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center">
                         <i class="fas fa-book"></i>
                     </div>
@@ -103,7 +103,7 @@
                     </div>
                 </a>
 
-                <a href="{{ route('mentor.assignments.index') }}" class="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition duration-300">
+                <a href="{{ route('mentor.assignments.index') }}" class="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-700 transition duration-300">
                     <div class="h-10 w-10 rounded-lg bg-yellow-100 text-yellow-600 flex items-center justify-center">
                         <i class="fas fa-tasks"></i>
                     </div>
@@ -113,7 +113,7 @@
                     </div>
                 </a>
 
-                <a href="{{ route('chats.mentor_chats.index') }}" class="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition duration-300">
+                <a href="{{ route('chats.mentor_chats.index') }}" class="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-700 transition duration-300">
                     <div class="h-10 w-10 rounded-lg bg-green-100 text-green-600 flex items-center justify-center">
                         <i class="fas fa-comments"></i>
                     </div>

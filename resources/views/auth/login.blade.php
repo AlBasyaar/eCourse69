@@ -80,7 +80,7 @@ body {
         </div>
 
         <!-- Illustration Section - Right Side -->
-        <div class="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-blue-50 to-purple-50 items-center justify-center p-4 relative">
+        <div class="hidden lg:flex lg:w-1/2 from-blue-50 to-purple-50 dark:from-gray-900 dark:to-purple-900/40 items-center justify-center p-4 relative">
             <!-- Logo positioned at top right of illustration -->
             <div class="absolute top-6 right-6 z-10">
                 <img src="https://res.cloudinary.com/dr5pehdsw/image/upload/v1752056700/69_uq1r75.png" alt="School Logo" class="w-16 h-16 object-contain">
@@ -94,7 +94,7 @@ body {
                 
                 <!-- Welcome Text -->
                 <div class="space-y-2 pb-8">
-                    <h2 class="text-xl font-bold text-gray-800">Selamat Datang Kembali!</h2>
+                    <h2 class="text-xl font-bold text-gray-900 dark:text-gray-800">Selamat Datang Kembali!</h2>
                     <p class="text-gray-600 text-sm px-4 leading-relaxed">
                         Masuk ke akun Anda untuk melanjutkan pembelajaran
                     </p>

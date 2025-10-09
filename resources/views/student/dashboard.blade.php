@@ -96,7 +96,7 @@
                 </h3>
             </div>
             <div class="p-6 space-y-4">
-                <a href="{{ route('student.courses.index') }}" class="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition duration-300">
+                <a href="{{ route('student.courses.index') }}" class="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-700 transition duration-300">
                     <div class="h-10 w-10 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center">
                         <i class="fas fa-search"></i>
                     </div>
@@ -106,7 +106,7 @@
                     </div>
                 </a>
 
-                <a href="{{ route('student.certificates.index') }}" class="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition duration-300">
+                <a href="{{ route('student.certificates.index') }}" class="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-700 transition duration-300">
                     <div class="h-10 w-10 rounded-lg bg-green-100 text-green-600 flex items-center justify-center">
                         <i class="fas fa-certificate"></i>
                     </div>
