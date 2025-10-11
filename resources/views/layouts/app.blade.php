@@ -377,10 +377,7 @@
                 <!-- Logo -->
                 <div class="flex items-center">
                     <a href="/" class="flex items-center space-x-2">
-                        <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
-                            <i class="fas fa-graduation-cap text-white text-xl"></i>
-                        </div>
-                        <span class="text-xl font-bold">eCourse69</span>
+                        <img src="https://res.cloudinary.com/dr5pehdsw/image/upload/v1760195986/Logo_E_Course_SMKN69JKT-01_1_ntuajp.png" alt="eCourse69 Logo" class="w-38 h-24 rounded-lg">
                     </a>
                 </div>
 
