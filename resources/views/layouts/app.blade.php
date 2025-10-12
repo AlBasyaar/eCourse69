@@ -377,7 +377,7 @@
                 <!-- Logo -->
                 <div class="flex items-center">
                     <a href="/" class="flex items-center space-x-2">
-                        <img src="https://res.cloudinary.com/dr5pehdsw/image/upload/v1760195986/Logo_E_Course_SMKN69JKT-01_1_ntuajp.png" alt="eCourse69 Logo" class="w-38 h-24 rounded-lg">
+                        <img src="https://res.cloudinary.com/dr5pehdsw/image/upload/v1760279381/Logo_e_Course_tx5fr9.png" alt="eCourse69 Logo" class="w-38 h-24 rounded-lg">
                     </a>
                 </div>
 
