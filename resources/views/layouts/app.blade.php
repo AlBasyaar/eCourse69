@@ -8,27 +8,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
+        html {
+            scroll-behavior: smooth;
         }
 
-        /* Light Mode Variables */
-        body.light-mode {
-            --bg-primary: #ffffff;
-            --bg-secondary: #f9fafb;
-            --bg-tertiary: #f3f4f6;
-            --text-primary: #111827;
-            --text-secondary: #6b7280;
-            --text-tertiary: #4b5563;
-            --border-color: #e5e7eb;
-            --navbar-bg: rgba(255, 255, 255, 0.95);
-            --card-bg: #ffffff;
-            --input-bg: #ffffff;
-            --hover-bg: #f3f4f6;
+        body {
+            font-family: 'outfit', sans-serif;
+            background-color: #111827;
+            color: #f9fafb;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         /* Dark Mode Variables */
-        body.dark-mode {
+        body {
             --bg-primary: #111827;
             --bg-secondary: #1f2937;
             --bg-tertiary: #374151;
@@ -42,224 +34,148 @@
             --hover-bg: #374151;
         }
 
-        body {
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        /* Global Text Colors */
-        body.light-mode {
-            color: #111827;
-        }
-
-        body.dark-mode {
-            color: #f9fafb;
-        }
-
         /* Headings */
-        body.light-mode h1,
-        body.light-mode h2,
-        body.light-mode h3,
-        body.light-mode h4,
-        body.light-mode h5,
-        body.light-mode h6 {
-            color: #111827;
-        }
-
-        body.dark-mode h1,
-        body.dark-mode h2,
-        body.dark-mode h3,
-        body.dark-mode h4,
-        body.dark-mode h5,
-        body.dark-mode h6 {
+        h1, h2, h3, h4, h5, h6 {
             color: #f9fafb;
         }
 
         /* Paragraphs and Text */
-        body.light-mode p,
-        body.light-mode span,
-        body.light-mode div {
-            color: #111827;
-        }
-
-        body.dark-mode p,
-        body.dark-mode span,
-        body.dark-mode div {
+        p, span, div {
             color: #f9fafb;
         }
 
         /* Cards */
-        body.light-mode .card,
-        body.light-mode [class*="bg-white"] {
-            background-color: #ffffff !important;
-            color: #111827 !important;
-        }
-
-        body.dark-mode .card,
-        body.dark-mode [class*="bg-white"]:not(.bg-white\/5):not(.bg-white\/10) {
+        .card,
+        [class*="bg-white"]:not(.bg-white\/5):not(.bg-white\/10) {
             background-color: #1f2937 !important;
             color: #f9fafb !important;
         }
 
         /* Tables */
-        body.light-mode table {
-            color: #111827;
-        }
-
-        body.dark-mode table {
+        table {
             color: #f9fafb;
         }
 
-        body.light-mode th {
-            background-color: #f9fafb;
-            color: #111827;
-        }
-
-        body.dark-mode th {
+        th {
             background-color: #374151;
             color: #f9fafb;
         }
 
-        body.light-mode td {
-            border-color: #e5e7eb;
-            color: #111827;
-        }
-
-        body.dark-mode td {
+        td {
             border-color: #374151;
             color: #f9fafb;
         }
 
         /* Forms */
-        body.light-mode input,
-        body.light-mode textarea,
-        body.light-mode select {
-            background-color: #ffffff;
-            color: #111827;
-            border-color: #e5e7eb;
-        }
-
-        body.dark-mode input,
-        body.dark-mode textarea,
-        body.dark-mode select {
+        input, textarea, select {
             background-color: #374151;
             color: #f9fafb;
             border-color: #4b5563;
         }
 
-        body.light-mode input::placeholder,
-        body.light-mode textarea::placeholder {
-            color: #9ca3af;
-        }
-
-        body.dark-mode input::placeholder,
-        body.dark-mode textarea::placeholder {
+        input::placeholder,
+        textarea::placeholder {
             color: #6b7280;
         }
 
         /* Labels */
-        body.light-mode label {
-            color: #374151;
-        }
-
-        body.dark-mode label {
+        label {
             color: #d1d5db;
         }
 
-        /* Button Visibility - CRITICAL FIX */
-        body.light-mode button,
-        body.light-mode .btn {
+        /* Button Visibility */
+        button,
+        .btn {
             opacity: 1 !important;
             visibility: visible !important;
         }
 
-        /* Action Buttons in Light Mode */
-        body.light-mode .bg-blue-500,
-        body.light-mode .bg-blue-600,
-        body.light-mode button.bg-blue-500,
-        body.light-mode button.bg-blue-600,
-        body.light-mode a.bg-blue-500,
-        body.light-mode a.bg-blue-600 {
+        /* Action Buttons */
+        .bg-blue-500,
+        .bg-blue-600,
+        button.bg-blue-500,
+        button.bg-blue-600,
+        a.bg-blue-500,
+        a.bg-blue-600 {
             background-color: #2563eb !important;
             color: #ffffff !important;
             border: 1px solid #2563eb !important;
         }
 
-        body.light-mode .bg-green-500,
-        body.light-mode .bg-green-600,
-        body.light-mode button.bg-green-500,
-        body.light-mode button.bg-green-600 {
+        .bg-green-500,
+        .bg-green-600,
+        button.bg-green-500,
+        button.bg-green-600 {
             background-color: #16a34a !important;
             color: #ffffff !important;
             border: 1px solid #16a34a !important;
         }
 
-        body.light-mode .bg-red-500,
-        body.light-mode .bg-red-600,
-        body.light-mode button.bg-red-500,
-        body.light-mode button.bg-red-600 {
+        .bg-red-500,
+        .bg-red-600,
+        button.bg-red-500,
+        button.bg-red-600 {
             background-color: #dc2626 !important;
             color: #ffffff !important;
             border: 1px solid #dc2626 !important;
         }
 
-        body.light-mode .bg-yellow-500,
-        body.light-mode .bg-yellow-600,
-        body.light-mode button.bg-yellow-500,
-        body.light-mode button.bg-yellow-600 {
+        .bg-yellow-500,
+        .bg-yellow-600,
+        button.bg-yellow-500,
+        button.bg-yellow-600 {
             background-color: #ca8a04 !important;
             color: #ffffff !important;
             border: 1px solid #ca8a04 !important;
         }
 
-        body.light-mode .bg-purple-500,
-        body.light-mode .bg-purple-600 {
+        .bg-purple-500,
+        .bg-purple-600 {
             background-color: #9333ea !important;
             color: #ffffff !important;
             border: 1px solid #9333ea !important;
         }
 
-        /* Hover Effects for Buttons in Light Mode */
-        body.light-mode .bg-blue-600:hover,
-        body.light-mode button.bg-blue-600:hover {
+        /* Hover Effects for Buttons */
+        .bg-blue-600:hover,
+        button.bg-blue-600:hover {
             background-color: #1d4ed8 !important;
             border-color: #1d4ed8 !important;
         }
 
-        body.light-mode .bg-green-600:hover,
-        body.light-mode button.bg-green-600:hover {
+        .bg-green-600:hover,
+        button.bg-green-600:hover {
             background-color: #15803d !important;
             border-color: #15803d !important;
         }
 
-        body.light-mode .bg-red-600:hover,
-        body.light-mode button.bg-red-600:hover {
+        .bg-red-600:hover,
+        button.bg-red-600:hover {
             background-color: #b91c1c !important;
             border-color: #b91c1c !important;
         }
 
         /* Icon Buttons */
-        body.light-mode .text-blue-600 {
+        .text-blue-600 {
             color: #2563eb !important;
         }
 
-        body.light-mode .text-green-600 {
+        .text-green-600 {
             color: #16a34a !important;
         }
 
-        body.light-mode .text-red-600 {
+        .text-red-600 {
             color: #dc2626 !important;
         }
 
-        body.light-mode .text-yellow-600 {
+        .text-yellow-600 {
             color: #ca8a04 !important;
         }
 
-        /* Make sure form buttons are visible */
-        body.light-mode button[type="submit"],
-        body.light-mode button[type="button"],
-        body.light-mode input[type="submit"] {
+        /* Form Buttons */
+        button[type="submit"],
+        button[type="button"],
+        input[type="submit"] {
             opacity: 1 !important;
             box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1) !important;
         }
@@ -311,65 +227,68 @@
         }
 
         /* Specific fixes for Tailwind classes */
-        body.dark-mode .text-gray-900 {
+        .text-gray-900 {
             color: #f9fafb !important;
         }
 
-        body.dark-mode .text-gray-800 {
+        .text-gray-800 {
             color: #f9fafb !important;
         }
 
-        body.dark-mode .text-gray-700 {
+        .text-gray-700 {
             color: #d1d5db !important;
         }
 
-        body.dark-mode .text-gray-600 {
+        .text-gray-600 {
             color: #9ca3af !important;
         }
 
-        body.light-mode .dark\:text-white,
-        body.light-mode .dark\:text-gray-200,
-        body.light-mode .dark\:text-gray-300 {
-            color: #111827 !important;
+        .dark\:text-white,
+        .dark\:text-gray-200,
+        .dark\:text-gray-300 {
+            color: #f9fafb !important;
         }
 
         /* Border colors */
-        body.light-mode [class*="border-gray"] {
-            border-color: #e5e7eb !important;
-        }
-
-        body.dark-mode [class*="border-gray"] {
+        [class*="border-gray"] {
             border-color: #4b5563 !important;
         }
 
         /* Background fix for secondary elements */
-        body.dark-mode .bg-gray-50 {
+        .bg-gray-50 {
             background-color: #374151 !important;
         }
 
-        body.dark-mode .bg-gray-100 {
+        .bg-gray-100 {
             background-color: #4b5563 !important;
         }
 
         /* Hover states */
-        body.light-mode .hover\:bg-gray-50:hover {
-            background-color: #f9fafb !important;
-        }
-
-        body.dark-mode .hover\:bg-gray-700:hover {
+        .hover\:bg-gray-700:hover {
             background-color: #374151 !important;
         }
 
         /* Ensure all action links are visible */
-        body.light-mode a[href*="edit"],
-        body.light-mode a[href*="delete"],
-        body.light-mode a[href*="create"],
-        body.light-mode a[href*="add"] {
+        a[href*="edit"],
+        a[href*="delete"],
+        a[href*="create"],
+        a[href*="add"] {
             opacity: 1 !important;
+        }
+
+        /* Contact Button Styles */
+        .contact-btn {
+            background-color: #000000;
+            color: #f9fafb;
+        }
+
+        .contact-btn:hover {
+            background-color: #ffffff;
+            color: #000000;
         }
     </style>
 </head>
-<body class="light-mode">
+<body class="dark-mode">
     <!-- Navbar -->
     <nav class="navbar-glass sticky top-0 z-50 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -377,7 +296,7 @@
                 <!-- Logo -->
                 <div class="flex items-center">
                     <a href="/" class="flex items-center space-x-2">
-                        <img src="https://res.cloudinary.com/dr5pehdsw/image/upload/v1760279381/Logo_e_Course_tx5fr9.png" alt="eCourse69 Logo" class="w-38 h-24 rounded-lg">
+                        <img src="https://res.cloudinary.com/dr5pehdsw/image/upload/v1760316641/logo_e_course_revisi-01_kxfe5e.png" alt="eCourse69 Logo" class="w-38 h-24 rounded-lg">
                     </a>
                 </div>
 
@@ -396,11 +315,6 @@
 
                 <!-- Right Side -->
                 <div class="flex items-center space-x-4">
-                    <!-- Theme Toggle -->
-                    <button id="theme-toggle" class="p-2 rounded-lg transition-colors">
-                        <i class="fas fa-moon" id="theme-icon"></i>
-                    </button>
-
                     @guest
                     <!-- Login & Register Buttons -->
                     <div class="hidden md:flex items-center space-x-3">
@@ -430,7 +344,7 @@
 
                         <!-- Profile Dropdown -->
                         <div class="relative">
-                            <button id="profile-btn" class="flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                            <button id="profile-btn" class="flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-gray-700 transition-colors">
                                 <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center">
                                     <span class="text-white text-sm font-semibold">{{ substr(Auth::user()->name, 0, 1) }}</span>
                                 </div>
@@ -443,15 +357,15 @@
                                     <p class="text-sm font-medium">{{ Auth::user()->name }}</p>
                                     <p class="text-xs" style="color: var(--text-tertiary);">{{ Auth::user()->email }}</p>
                                 </div>
-                                <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700">
+                                <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-700">
                                     <i class="fas fa-user mr-2"></i>Profile
                                 </a>
-                                <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700">
+                                <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-700">
                                     <i class="fas fa-cog mr-2"></i>Settings
                                 </a>
                                 <form method="POST" action="{{ route('logout') }}" class="border-t mt-2 pt-2" style="border-color: var(--border-color);">
                                     @csrf
-                                    <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20">
+                                    <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-900/20">
                                         <i class="fas fa-sign-out-alt mr-2"></i>Logout
                                     </button>
                                 </form>
@@ -460,13 +374,13 @@
                     </div>
 
                     <!-- Mobile Menu Button (Authenticated) -->
-                    <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
+                    <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-gray-700">
                         <i class="fas fa-bars"></i>
                     </button>
                     @endauth
 
                     <!-- Contact Button -->
-                    <a href="#eCourse69" class="hidden lg:flex items-center px-6 py-2 text-sm font-medium text-white bg-gray-900 dark:bg-white dark:text-gray-900 rounded-lg hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors">
+                    <a  href="#footer" class="contact-btn hidden lg:flex items-center px-6 py-2 text-sm font-medium rounded-lg transition-colors">
                         Kontak
                     </a>
                 </div>
@@ -499,7 +413,7 @@
 
             @guest
             <div class="space-y-3">
-                <a href="{{ route('login') }}" class="block px-4 py-3 text-center border rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700" style="border-color: var(--border-color);">
+                <a href="{{ route('login') }}" class="block px-4 py-3 text-center border rounded-lg hover:bg-gray-700" style="border-color: var(--border-color);">
                     Login
                 </a>
                 <a href="{{ route('register') }}" class="block px-4 py-3 text-center text-white bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg">
@@ -509,25 +423,25 @@
             @else
             <div class="space-y-2">
                 @if(Auth::user()->role === 'admin')
-                <a href="{{ route('admin.dashboard') }}" class="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
+                <a href="{{ route('admin.dashboard') }}" class="block px-4 py-3 hover:bg-gray-700 rounded-lg">
                     <i class="fas fa-tachometer-alt mr-2"></i>Dashboard
                 </a>
                 @elseif(Auth::user()->role === 'mentor')
-                <a href="{{ route('mentor.dashboard') }}" class="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
+                <a href="{{ route('mentor.dashboard') }}" class="block px-4 py-3 hover:bg-gray-700 rounded-lg">
                     <i class="fas fa-tachometer-alt mr-2"></i>Dashboard
                 </a>
                 @elseif(Auth::user()->role === 'student')
-                <a href="{{ route('student.dashboard') }}" class="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
+                <a href="{{ route('student.dashboard') }}" class="block px-4 py-3 hover:bg-gray-700 rounded-lg">
                     <i class="fas fa-tachometer-alt mr-2"></i>Dashboard
                 </a>
                 @endif
 
-                <a href="#" class="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
+                <a href="#" class="block px-4 py-3 hover:bg-gray-700 rounded-lg">
                     <i class="fas fa-user mr-2"></i>Profile
                 </a>
                 <form method="POST" action="{{ route('logout') }}" class="mt-4 pt-4 border-t" style="border-color: var(--border-color);">
                     @csrf
-                    <button type="submit" class="block w-full text-left px-4 py-3 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg">
+                    <button type="submit" class="block w-full text-left px-4 py-3 text-red-600 hover:bg-red-900/20 rounded-lg">
                         <i class="fas fa-sign-out-alt mr-2"></i>Logout
                     </button>
                 </form>
@@ -544,7 +458,7 @@
         <!-- Flash Messages -->
         @if(session('success'))
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
-            <div class="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 text-green-800 dark:text-green-200 px-6 py-4 rounded-lg shadow-sm" role="alert">
+            <div class="bg-green-900/20 border border-green-800 text-green-200 px-6 py-4 rounded-lg shadow-sm" role="alert">
                 <div class="flex items-center">
                     <i class="fas fa-check-circle text-green-500 mr-3"></i>
                     <p class="font-medium">{{ session('success') }}</p>
@@ -558,7 +472,7 @@
 
         @if(session('error'))
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
-            <div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-800 dark:text-red-200 px-6 py-4 rounded-lg shadow-sm" role="alert">
+            <div class="bg-red-900/20 border border-red-800 text-red-200 px-6 py-4 rounded-lg shadow-sm" role="alert">
                 <div class="flex items-center">
                     <i class="fas fa-exclamation-circle text-red-500 mr-3"></i>
                     <p class="font-medium">{{ session('error') }}</p>
@@ -592,39 +506,6 @@
         // Update clock every second
         setInterval(updateClock, 1000);
         updateClock(); // Initial call
-
-        // Theme Toggle with immediate application
-        const themeToggle = document.getElementById('theme-toggle');
-        const themeIcon = document.getElementById('theme-icon');
-        
-        // Check for saved theme preference or default to 'light'
-        const currentTheme = localStorage.getItem('theme') || 'light';
-        
-        // Apply theme immediately on page load
-        function applyTheme(theme) {
-            document.body.classList.remove('light-mode', 'dark-mode');
-            document.body.classList.add(theme + '-mode');
-            
-            if (theme === 'dark') {
-                themeIcon.classList.remove('fa-moon');
-                themeIcon.classList.add('fa-sun');
-            } else {
-                themeIcon.classList.remove('fa-sun');
-                themeIcon.classList.add('fa-moon');
-            }
-        }
-
-        // Apply saved theme immediately
-        applyTheme(currentTheme);
-
-        // Theme toggle click handler
-        themeToggle.addEventListener('click', () => {
-            const isDark = document.body.classList.contains('dark-mode');
-            const newTheme = isDark ? 'light' : 'dark';
-            
-            applyTheme(newTheme);
-            localStorage.setItem('theme', newTheme);
-        });
 
         // Profile Dropdown
         const profileBtn = document.getElementById('profile-btn');

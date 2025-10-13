@@ -63,7 +63,7 @@
             <button class="whitespace-nowrap text-white-500 pb-2 font-medium text-sm">
                 Sistem Informasi Jaringan dan Aplikasi
             </button>
-            <button class="whitespace-nowrap text-blue-700 hover:text-blue-600 pb-2 font-medium text-sm">
+            <button class="whitespace-nowrap text-[#3b82f6] hover:text-[#60a5fa] pb-2 font-medium text-sm">
                 Sistem Informasi Jaringan dan Aplikasi
             </button>
             <button class="whitespace-nowrap text-white-500 hover:text-white-700 pb-2 font-medium text-sm">
@@ -91,9 +91,9 @@
 
 <!-- Course Categories -->
 <div class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
-            <span class="text-blue-400">List Bidang</span>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">
+            List <span class="text-blue-400">Bidang</span>
         </h2>
 
         <!-- Section: Skills -->
@@ -118,10 +118,10 @@
 
                 <!-- Design -->
                 <div class="text-center group relative">
-                    <div class="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br from-blue-400 to-blue-500 rounded-full shadow-md mb-6 border-2 border-blue-300 group-hover:shadow-xl transition-all duration-300">
-                        <i class="fas fa-pen-nib text-4xl text-white"></i>
+                    <div class="inline-flex items-center justify-center w-24 h-24 bg-white rounded-full shadow-md mb-6 border-2 border-gray-300 group-hover:shadow-xl transition-all duration-300">
+                        <i class="fas fa-pen-nib text-4xl text-gray-700"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-blue-400 mb-2">DESAIN</h3>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">DESAIN</h3>
                     <p class="text-sm text-gray-600 mb-4">UI/UX Desain, Desain Grafis</p>
                 </div>
 
@@ -151,13 +151,13 @@
 
         <div class="grid md:grid-cols-4 gap-6 mt-12">
             <!-- Testimonial 1 - White Card -->
-            <div class="bg-white border-2 border-gray-200 rounded-3xl p-6 text-center shadow-sm hover:shadow-md transition-all duration-300">
-                <div class="inline-flex items-center justify-center w-16 h-16 bg-white border-2 border-gray-300 rounded-full mb-6">
-                    <span class="text-2xl font-bold text-gray-400">01</span>
+            <div class="bg-gradient-to-br from-blue-400 to-blue-500 rounded-3xl p-6 text-center shadow-md hover:shadow-lg transition-all duration-300">
+                <div class="inline-flex items-center justify-center w-16 h-16 bg-white/30 backdrop-blur-sm rounded-full mb-6">
+                    <span class="text-2xl font-bold text-white-400">01</span>
                 </div>
-                <h3 class="text-base font-bold text-blue-400 mb-2">Sarah J</h3>
-                <p class="text-sm font-semibold text-gray-900 mb-3">Web Developer</p>
-                <p class="text-xs text-gray-600">Materi sangat mudah dipahami dan mentornya sangat membantu!</p>
+                <h3 class="text-base font-bold text-white mb-2">Muhammad Bintang</h3>
+                <p class="text-sm font-semibold text-white/900 mb-3">Web Developer</p>
+                <p class="text-xs text-white/800">Materi sangat mudah dipahami dan mentornya sangat membantu!</p>
             </div>
 
             <!-- Testimonial 2 - Blue Card -->
@@ -165,8 +165,8 @@
                 <div class="inline-flex items-center justify-center w-16 h-16 bg-white/30 backdrop-blur-sm rounded-full mb-6">
                     <span class="text-2xl font-bold text-white">02</span>
                 </div>
-                <h3 class="text-base font-bold text-white mb-2">Budi S</h3>
-                <p class="text-sm font-semibold text-white/90 mb-3">Desainer Grafis</p>
+                <h3 class="text-base font-bold text-white mb-2">Haikal Devin Prayata</h3>
+                <p class="text-sm font-semibold text-white/90 mb-3">Networking</p>
                 <p class="text-xs text-white/80">Berkat e-Course69, saya berhasil mendapatkan pekerjaan pertama sebagai desainer grafis.</p>
             </div>
 
@@ -175,7 +175,7 @@
                 <div class="inline-flex items-center justify-center w-16 h-16 bg-white/30 backdrop-blur-sm rounded-full mb-6">
                     <span class="text-2xl font-bold text-white">03</span>
                 </div>
-                <h3 class="text-base font-bold text-white mb-2">Budi S</h3>
+                <h3 class="text-base font-bold text-white mb-2">Muhamad ilman Az Zaidan</h3>
                 <p class="text-sm font-semibold text-white/90 mb-3">Desainer Grafis</p>
                 <p class="text-xs text-white/80">Berkat e-Course69, saya berhasil mendapatkan pekerjaan pertama sebagai desainer grafis.</p>
             </div>
@@ -185,7 +185,7 @@
                 <div class="inline-flex items-center justify-center w-16 h-16 bg-white/30 backdrop-blur-sm rounded-full mb-6">
                     <span class="text-2xl font-bold text-white">04</span>
                 </div>
-                <h3 class="text-base font-bold text-white mb-2">Lani</h3>
+                <h3 class="text-base font-bold text-white mb-2">Serli Santiono</h3>
                 <p class="text-sm font-semibold text-white/90 mb-3">MARKETING</p>
                 <p class="text-xs text-white/80">Platform yang bagus untuk belajar skill baru dengan fleksibel.</p>
             </div>
@@ -202,10 +202,10 @@
 </div>
 
 <!-- Footer Info -->
-<div class="relative bg-white py-12 overflow-hidden">
+<div id="footer" class="relative bg-white py-12 overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Blue rounded container with shadow -->
-        <div class="bg-gradient-to-br from-blue-400 to-blue-500 rounded-[4rem] shadow-2xl px-16 py-20 relative overflow-visible">
+        <div class="bg-gradient-to-br rounded-[4rem] shadow-2xl px-16 py-20 relative overflow-visible">
 
             <div class="relative grid md:grid-cols-2 gap-16 items-center">
                 <div class="text-white">
@@ -219,7 +219,8 @@
                     <!-- Instagram -->
                     <div class="flex items-center space-x-5">
                         <a href="https://www.instagram.com/smknegeri69jakarta" target="_blank" class="flex items-center space-x-5 hover:opacity-80 transition">
-                            <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center flex-shrink-0">
+                            <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 shadow-md"
+                                style="background-color: #ffffff !important;">
                                 <i class="fab fa-instagram text-blue-500 text-2xl"></i>
                             </div>
                             <span class="text-base md:text-lg">@smknegeri69jakarta</span>
@@ -229,7 +230,8 @@
                     <!-- Website -->
                     <div class="flex items-center space-x-5">
                         <a href="https://smkn69jkt.sch.id/" target="_blank" class="flex items-center space-x-5 hover:opacity-80 transition">
-                            <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center flex-shrink-0">
+                            <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 shadow-md"
+                                style="background-color: #ffffff !important;">
                                 <i class="fas fa-globe text-blue-500 text-2xl"></i>
                             </div>
                             <span class="text-base md:text-lg">smkn69jkt.sch.id</span>
@@ -239,7 +241,8 @@
                     <!-- YouTube -->
                     <div class="flex items-center space-x-5">
                         <a href="https://www.youtube.com/@smkn69jakarta25" target="_blank" class="flex items-center space-x-5 hover:opacity-80 transition">
-                            <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center flex-shrink-0">
+                            <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 shadow-md"
+                                style="background-color: #ffffff !important;">
                                 <i class="fab fa-youtube text-blue-500 text-2xl"></i>
                             </div>
                             <span class="text-base md:text-lg">SMKN 69 Jakarta</span>
@@ -248,17 +251,6 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
-
-<!-- Final CTA -->
-<div class="bg-white py-12 -mt-16">
-    <div class="max-w-6xl mx-auto px-4 text-center">
-        <h2 class="text-6xl md:text-9xl font-black mb-4 leading-tight tracking-tight">
-            <span class="text-black-900">ENAM </span>
-            <span class="text-blue-400">SEMBILAN</span>
-        </h2>
-        <p class="text-lg md:text-2xl text-gray-600 italic mt-2">Wujudkan Karier Impianmu Bersama Kami</p>
     </div>
 </div>
 @endsection
