@@ -5,17 +5,14 @@
 @section('content')
 <style>
 body {
-    background-image: linear-gradient(to bottom right, #7C3AED, #3B82F6, #22D3EE);
+    background-image: linear-gradient(to bottom right, #363BB0, #38B4FF, #8858EE);
     margin: 0;
     padding: 0;
 }
 </style>
-<!-- Full-width background container -->
 <div class="min-h-screen flex items-center justify-center p-4">
-    <!-- Main Card Container -->
     <div class="bg-white rounded-3xl shadow-2xl flex max-w-4xl w-full overflow-hidden">
         
-        <!-- Login Form Section - Left Side -->
         <div class="w-full lg:w-1/2 p-8 lg:p-12 flex flex-col justify-center relative">
             
             <div class="space-y-6">
