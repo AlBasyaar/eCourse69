@@ -24,7 +24,7 @@
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
                         @foreach($assignments as $assignment)
-                        <tr class="hover:bg-gray-50">
+                        <tr class="hover:bg-gray-700">
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="flex items-center">
                                     <div class="h-10 w-10 rounded-full bg-primary text-white flex items-center justify-center">

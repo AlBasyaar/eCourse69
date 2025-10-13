@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="min-h-screen bg-gray-50 py-8">
+<div class="min-h-screen  py-8">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Header -->
         <div class="mb-8">
@@ -22,7 +22,7 @@
                     $otherUser = $chat->sender_id === auth()->id() ? $chat->receiver : $chat->sender;
                 @endphp
                 <div class="border-b border-gray-200 last:border-b-0">
-                    <a href="{{ route('chats.mentor_chats.show', $otherUser) }}" class="block p-6 hover:bg-gray-50 transition-colors">
+                    <a href="{{ route('chats.mentor_chats.show', $otherUser) }}" class="block p-6 hover:bg-gray-700 transition-colors">
                         <div class="flex items-center justify-between">
                             <div class="flex items-center">
                                 <div class="flex-shrink-0 h-12 w-12">
