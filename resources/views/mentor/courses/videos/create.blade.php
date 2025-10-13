@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="min-h-screen bg-gray-50 py-8">
+<div class="min-h-screen py-8">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Header -->
         <div class="mb-8">
@@ -10,10 +10,6 @@
                     <h1 class="text-3xl font-bold text-gray-900">Add New Video</h1>
                     <p class="mt-2 text-gray-600">Upload a new video to {{ $course->title }}</p>
                 </div>
-                <a href="{{ route('mentor.courses.show', $course) }}" class="inline-flex items-center px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors">
-                    <i class="fas fa-arrow-left mr-2"></i>
-                    Back to Course
-                </a>
             </div>
         </div>
 
@@ -82,7 +78,7 @@
 
                     <!-- Submit Button -->
                     <div class="mt-8 flex justify-end space-x-4">
-                        <a href="{{ route('mentor.courses.show', $course) }}" class="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
+                        <a href="{{ route('mentor.courses.show', $course) }}" class="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg transition-colors">
                             Cancel
                         </a>
                         <button type="submit" class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
