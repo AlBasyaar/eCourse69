@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+<div class="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-7xl mx-auto">
         <!-- Header with Action Button -->
         <div class="flex flex-col sm:flex-row items-center justify-between mb-8">
