@@ -50,10 +50,10 @@
             </div>
 
             <div class="flex justify-end space-x-4 mt-8">
-                <a href="{{ route('admin.mentors.index') }}" class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50">
+                <a href="{{ route('admin.mentors.index') }}" class="px-4 py-2 border border-gray-300 rounded-md text-gray-700">
                     Batal
                 </a>
-                <button type="submit" class="px-4 py-2 bg-primary text-white rounded-md hover:bg-secondary">
+                <button type="submit" class="px-4 py-2 bg-blue-700 text-white rounded-md hover:bg-secondary">
                     <i class="fas fa-save mr-2"></i>Simpan Mentor
                 </button>
             </div>

@@ -6,9 +6,10 @@
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <!-- Header Section -->
     <div class="mb-12 text-center">
-        <h1 class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-gray-900 via-blue-800 to-purple-700 bg-clip-text text-transparent mb-4">
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
             Dashboard Admin
         </h1>
+
         <p class="text-xl text-gray-600 max-w-2xl mx-auto">
             Kelola sistem kursus online dengan mudah dan efisien
         </p>
@@ -19,7 +20,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-12">
         <!-- Total Siswa -->
         <div class="group relative overflow-hidden bg-white rounded-3xl shadow-soft hover:shadow-large transition-all duration-500 hover:-translate-y-2">
-            <div class="absolute inset-0 bg-gradient-to-br from-blue-50 to-indigo-100 opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div class="absolute inset-0 bg-gradient-to-br from-blue-50 to-indigo-50 opacity-0 transition-opacity duration-500"></div>
             <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-400/20 to-indigo-500/20 rounded-full -translate-y-16 translate-x-16"></div>
             <div class="relative p-8">
                 <div class="flex items-center justify-between mb-6">
@@ -40,7 +41,7 @@
 
         <!-- Total Mentor -->
         <div class="group relative overflow-hidden bg-white rounded-3xl shadow-soft hover:shadow-large transition-all duration-500 hover:-translate-y-2">
-            <div class="absolute inset-0 bg-gradient-to-br from-green-50 to-emerald-100 opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div class="absolute inset-0 bg-gradient-to-br from-blue-50 to-indigo-50 opacity-0 transition-opacity duration-500"></div>
             <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-green-400/20 to-emerald-500/20 rounded-full -translate-y-16 translate-x-16"></div>
             <div class="relative p-8">
                 <div class="flex items-center justify-between mb-6">
@@ -61,7 +62,7 @@
 
         <!-- Total Kursus -->
         <div class="group relative overflow-hidden bg-white rounded-3xl shadow-soft hover:shadow-large transition-all duration-500 hover:-translate-y-2">
-            <div class="absolute inset-0 bg-gradient-to-br from-purple-50 to-violet-100 opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div class="absolute inset-0 bg-gradient-to-br from-blue-50 to-indigo-50 opacity-0 transition-opacity duration-500"></div>
             <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-400/20 to-violet-500/20 rounded-full -translate-y-16 translate-x-16"></div>
             <div class="relative p-8">
                 <div class="flex items-center justify-between mb-6">
@@ -82,7 +83,7 @@
 
         <!-- Akses Aktif -->
         <div class="group relative overflow-hidden bg-white rounded-3xl shadow-soft hover:shadow-large transition-all duration-500 hover:-translate-y-2">
-            <div class="absolute inset-0 bg-gradient-to-br from-orange-50 to-amber-100 opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div class="absolute inset-0 bg-gradient-to-br from-blue-50 to-indigo-50 opacity-0 transition-opacity duration-500"></div>
             <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-orange-400/20 to-amber-500/20 rounded-full -translate-y-16 translate-x-16"></div>
             <div class="relative p-8">
                 <div class="flex items-center justify-between mb-6">
@@ -111,7 +112,7 @@
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <!-- Kelola Mentor -->
         <div class="group relative overflow-hidden bg-white rounded-3xl shadow-soft hover:shadow-large transition-all duration-500 hover:-translate-y-1">
-            <div class="absolute inset-0 bg-gradient-to-br from-blue-50 to-indigo-50 opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
+            <div class="absolute inset-0 bg-gradient-to-br from-blue-50 to-indigo-50 opacity-0 transition-opacity duration-500"></div>
             <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-indigo-600"></div>
             <div class="relative p-8">
                 <div class="text-center mb-8">
@@ -121,7 +122,7 @@
                     <h3 class="text-xl font-bold text-gray-900 mb-3">Kelola Mentor</h3>
                     <p class="text-gray-600 leading-relaxed">Tambah, edit, atau hapus mentor untuk memberikan pengalaman belajar terbaik</p>
                 </div>
-                
+
                 <div class="space-y-4">
                     <a href="{{ route('admin.mentors.index') }}" class="group/btn flex items-center justify-center w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white py-4 px-6 rounded-2xl hover:from-blue-600 hover:to-blue-700 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 font-semibold">
                         <i class="fas fa-list mr-3 group-hover/btn:scale-110 transition-transform duration-200"></i>
@@ -137,7 +138,7 @@
 
         <!-- Kelola Kursus -->
         <div class="group relative overflow-hidden bg-white rounded-3xl shadow-soft hover:shadow-large transition-all duration-500 hover:-translate-y-1">
-            <div class="absolute inset-0 bg-gradient-to-br from-green-50 to-emerald-50 opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
+            <div class="absolute inset-0 bg-gradient-to-br from-blue-50 to-indigo-50 opacity-0 transition-opacity duration-500"></div>
             <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-500 to-emerald-600"></div>
             <div class="relative p-8">
                 <div class="text-center mb-8">
@@ -147,7 +148,7 @@
                     <h3 class="text-xl font-bold text-gray-900 mb-3">Kelola Kursus</h3>
                     <p class="text-gray-600 leading-relaxed">Tambah, edit, atau hapus kursus untuk memperluas katalog pembelajaran</p>
                 </div>
-                
+
                 <div class="space-y-4">
                     <a href="{{ route('admin.courses.index') }}" class="group/btn flex items-center justify-center w-full bg-gradient-to-r from-green-500 to-green-600 text-white py-4 px-6 rounded-2xl hover:from-green-600 hover:to-green-700 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 font-semibold">
                         <i class="fas fa-list mr-3 group-hover/btn:scale-110 transition-transform duration-200"></i>
@@ -163,7 +164,7 @@
 
         <!-- Akses Kursus -->
         <div class="group relative overflow-hidden bg-white rounded-3xl shadow-soft hover:shadow-large transition-all duration-500 hover:-translate-y-1">
-            <div class="absolute inset-0 bg-gradient-to-br from-purple-50 to-violet-50 opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
+            <div class="absolute inset-0 bg-gradient-to-br from-blue-50 to-indigo-50 opacity-0 transition-opacity duration-500"></div>
             <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 to-violet-600"></div>
             <div class="relative p-8">
                 <div class="text-center mb-8">
@@ -173,7 +174,7 @@
                     <h3 class="text-xl font-bold text-gray-900 mb-3">Akses Kursus</h3>
                     <p class="text-gray-600 leading-relaxed">Kelola akses siswa ke kursus untuk mengontrol pembelajaran</p>
                 </div>
-                
+
                 <div class="space-y-4">
                     <a href="{{ route('admin.course_accesses.index') }}" class="group/btn flex items-center justify-center w-full bg-gradient-to-r from-purple-500 to-purple-600 text-white py-4 px-6 rounded-2xl hover:from-purple-600 hover:to-purple-700 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 font-semibold">
                         <i class="fas fa-list mr-3 group-hover/btn:scale-110 transition-transform duration-200"></i>

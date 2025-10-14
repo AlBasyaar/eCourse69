@@ -9,7 +9,8 @@
             <h1 class="text-3xl font-bold text-gray-900">Kelola Mentor</h1>
             <p class="text-gray-600">Daftar semua mentor dalam sistem</p>
         </div>
-        <a href="{{ route('admin.mentors.create') }}" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-secondary transition duration-300">
+        <a href="{{ route('admin.mentors.create') }}"
+            class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300">
             <i class="fas fa-plus mr-2"></i>Tambah Mentor
         </a>
     </div>
@@ -57,8 +58,8 @@
                             <a href="{{ route('admin.mentors.edit', $mentor) }}" class="text-primary hover:text-secondary">
                                 <i class="fas fa-edit"></i> Edit
                             </a>
-                            <form method="POST" action="{{ route('admin.mentors.delete', $mentor) }}" class="inline" 
-                                  onsubmit="return confirm('Yakin ingin menghapus mentor ini?')">
+                            <form method="POST" action="{{ route('admin.mentors.delete', $mentor) }}" class="inline"
+                                onsubmit="return confirm('Yakin ingin menghapus mentor ini?')">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="text-red-600 hover:text-red-900">
@@ -78,7 +79,7 @@
                 </tbody>
             </table>
         </div>
-        
+
         @if($mentors->hasPages())
         <div class="px-6 py-4 border-t border-gray-200">
             {{ $mentors->links() }}

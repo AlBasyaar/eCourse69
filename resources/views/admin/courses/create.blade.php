@@ -96,10 +96,10 @@
             </div>
 
             <div class="flex justify-end space-x-4 mt-8">
-                <a href="{{ route('admin.courses.index') }}" class="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition duration-300">
+                <a href="{{ route('admin.courses.index') }}" class="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg transition duration-300">
                     Batal
                 </a>
-                <button type="submit" class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-secondary transition duration-300">
+                <button type="submit" class="px-6 py-2 bg-blue-700 text-white rounded-lg hover:bg-secondary transition duration-300">
                     <i class="fas fa-save mr-2"></i>Simpan Kursus
                 </button>
             </div>

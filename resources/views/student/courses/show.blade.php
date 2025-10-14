@@ -139,7 +139,7 @@
                                 {{ $userAssignment ? 'Upload Ulang Tugas' : 'Upload Tugas Akhir' }}
                             </label>
                             <input type="file" name="assignment_file" id="assignment_file" required
-                                   class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-white hover:file:bg-secondary">
+                                   class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-black hover:file:bg-secondary">
                             <p class="text-xs text-gray-500 mt-1">Max: 10MB</p>
                         </div>
                         
