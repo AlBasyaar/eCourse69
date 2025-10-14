@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" id="html-root">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,12 +36,19 @@
         }
 
         /* Headings */
-        h1, h2, h3, h4, h5, h6 {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
             color: #f9fafb;
         }
 
         /* Paragraphs and Text */
-        p, span, div {
+        p,
+        span,
+        div {
             color: #f9fafb;
         }
 
@@ -67,7 +75,9 @@
         }
 
         /* Forms */
-        input, textarea, select {
+        input,
+        textarea,
+        select {
             background-color: #374151;
             color: #f9fafb;
             border-color: #4b5563;
@@ -288,6 +298,7 @@
         }
     </style>
 </head>
+
 <body class="dark-mode">
     <!-- Navbar -->
     <nav class="navbar-glass sticky top-0 z-50 shadow-sm">
@@ -323,6 +334,9 @@
                         </a>
                         <a href="{{ route('register') }}" class="px-6 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg hover:from-blue-600 hover:to-blue-700 transition-all">
                             Register
+                        </a>
+                        <a href="#footer" id="mobile-contact-btn" class="block px-4 py-3 text-center border rounded-lg hover:bg-gray-700" style="border-color: var(--border-color);">
+                            Kontak
                         </a>
                     </div>
 
@@ -380,7 +394,7 @@
                     @endauth
 
                     <!-- Contact Button -->
-                    <a  href="#footer" class="contact-btn hidden lg:flex items-center px-6 py-2 text-sm font-medium rounded-lg transition-colors">
+                    <a href="#footer" class="contact-btn hidden lg:flex items-center px-6 py-2 text-sm font-medium rounded-lg transition-colors">
                         Kontak
                     </a>
                 </div>
@@ -418,6 +432,9 @@
                 </a>
                 <a href="{{ route('register') }}" class="block px-4 py-3 text-center text-white bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg">
                     Register
+                </a>
+                <a href="#footer" id="mobile-contact-btn" class="block px-4 py-3 text-center border rounded-lg hover:bg-gray-700" style="border-color: var(--border-color);">
+                    Kontak
                 </a>
             </div>
             @else
@@ -495,10 +512,10 @@
             const minutes = String(now.getMinutes()).padStart(2, '0');
             const seconds = String(now.getSeconds()).padStart(2, '0');
             const timeString = `${hours}:${minutes}:${seconds}`;
-            
+
             const clockElement = document.getElementById('realtime-clock');
             const clockMobileElement = document.getElementById('realtime-clock-mobile');
-            
+
             if (clockElement) clockElement.textContent = timeString;
             if (clockMobileElement) clockMobileElement.textContent = timeString;
         }
@@ -561,4 +578,5 @@
         }, 5000);
     </script>
 </body>
+
 </html>
