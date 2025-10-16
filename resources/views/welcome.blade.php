@@ -190,14 +190,6 @@
                 <p class="text-xs text-white/80">Platform yang bagus untuk belajar skill baru dengan fleksibel.</p>
             </div>
         </div>
-
-        <!-- Pagination Dots -->
-        <div class="flex justify-center mt-8 space-x-2">
-            <button class="w-2 h-2 bg-blue-400 rounded-full"></button>
-            <button class="w-2 h-2 bg-gray-300 rounded-full"></button>
-            <button class="w-2 h-2 bg-gray-300 rounded-full"></button>
-            <button class="w-2 h-2 bg-gray-300 rounded-full"></button>
-        </div>
     </div>
 </div>
 
