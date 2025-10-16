@@ -335,9 +335,6 @@
                         <a href="{{ route('register') }}" class="px-6 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg hover:from-blue-600 hover:to-blue-700 transition-all">
                             Register
                         </a>
-                        <a href="#footer" id="mobile-contact-btn" class="block px-4 py-3 text-center border rounded-lg hover:bg-gray-700" style="border-color: var(--border-color);">
-                            Kontak
-                        </a>
                     </div>
 
                     <!-- Mobile Menu Button (Guest) -->
@@ -393,10 +390,6 @@
                     </button>
                     @endauth
 
-                    <!-- Contact Button -->
-                    <a href="#footer" class="contact-btn hidden lg:flex items-center px-6 py-2 text-sm font-medium rounded-lg transition-colors">
-                        Kontak
-                    </a>
                 </div>
             </div>
 
@@ -432,9 +425,6 @@
                 </a>
                 <a href="{{ route('register') }}" class="block px-4 py-3 text-center text-white bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg">
                     Register
-                </a>
-                <a href="#footer" id="mobile-contact-btn" class="block px-4 py-3 text-center border rounded-lg hover:bg-gray-700" style="border-color: var(--border-color);">
-                    Kontak
                 </a>
             </div>
             @else
