@@ -86,7 +86,7 @@
 
             <div class="mt-6">
                 <button type="submit"
-                    class="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-secondary transition duration-300">
+                    class="w-full py-2 px-4 bg-blue-700 rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-secondary transition duration-300">
                     <i class="fas fa-save mr-2"></i>Simpan Perubahan
                 </button>
             </div>
