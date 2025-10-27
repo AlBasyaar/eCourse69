@@ -384,6 +384,12 @@
                                     <a href="{{ route('profile.show') }}" class="block px-4 py-2 text-sm hover:bg-gray-700">
                                         <i class="fas fa-user mr-2"></i>Profile
                                     </a>
+                                    @if (Auth::user()->role === 'admin')
+                                        <a href="{{ route('admin.password.resets.index') }}"
+                                            class="block px-4 py-2 text-sm hover:bg-gray-700">
+                                            <i class="fas fa-key mr-2"></i>Manajemen Password
+                                        </a>
+                                    @endif
                                     <form method="POST" action="{{ route('logout') }}" class="border-t mt-2 pt-2"
                                         style="border-color: var(--border-color);">
                                         @csrf
@@ -460,9 +466,14 @@
                         </a>
                     @endif
 
-                    <a href="#" class="block px-4 py-3 hover:bg-gray-700 rounded-lg">
+                    <a href="{{ route('profile.show') }}" class="block px-4 py-3 hover:bg-gray-700 rounded-lg">
                         <i class="fas fa-user mr-2"></i>Profile
                     </a>
+                    @if (Auth::user()->role === 'admin')
+                        <a href="{{ route('admin.password.resets.index') }}" class="block px-4 py-3 hover:bg-gray-700 rounded-lg">
+                            <i class="fas fa-tachometer-alt mr-2"></i>Manajemen Password
+                        </a>
+                    @endif
                     <form method="POST" action="{{ route('logout') }}" class="mt-4 pt-4 border-t"
                         style="border-color: var(--border-color);">
                         @csrf
@@ -515,7 +526,7 @@
         @endif
 
         @yield('content')
-        
+
     </main>
 
     @yield('scripts')

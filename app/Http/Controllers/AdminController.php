@@ -298,4 +298,70 @@ $courses = Course::with('mentor.user')
         $course->load('videos', 'finalAssignments.user', 'chats.user');
         return view('admin.courses.show', compact('course'));
     }
+
+    public function passwordResetRequests(Request $request)
+    {
+        // Ambil query search
+        $search = $request->get('search');
+        
+        // Ambil semua permintaan ganti password yang berstatus 'pending', 
+        // diurutkan dari yang terbaru (paling atas)
+        $queries = User::where('password_reset_status', 'pending')
+                    ->whereNotNull('requested_password')
+                    ->latest(); // Terbaru di atas
+
+        if ($search) {
+            $queries->where(function ($q) use ($search) {
+                $q->where('name', 'like', '%' . $search . '%')
+                  ->orWhere('email', 'like', '%' . $search . '%');
+            });
+        }
+        
+        $requests = $queries->paginate(10)->withQueryString();
+
+        return view('admin.password_resets.index', compact('requests', 'search'));
+    }
+
+    public function acceptPasswordReset($id)
+    {
+        $user = User::findOrFail($id);
+        
+        if ($user->password_reset_status === 'pending' && $user->requested_password) {
+            // 1. Ganti password pengguna dengan yang diminta (sudah di-hash)
+            $user->password = $user->requested_password;
+            
+            // 2. Reset kolom permintaan dan set status ke accepted
+            $user->requested_password = null;
+            $user->password_reset_status = 'accepted';
+            $user->password_reset_token = null;
+            $user->password_reset_expires_at = null;
+            $user->save();
+            
+            // Di sini Anda bisa menambahkan notifikasi email ke user
+
+            return back()->with('success', 'Permintaan ganti password untuk ' . $user->email . ' telah **Accepted**.');
+        }
+
+        return back()->with('error', 'Permintaan tidak valid, sudah diproses, atau data password tidak ditemukan.');
+    }
+
+    public function rejectPasswordReset($id)
+    {
+        $user = User::findOrFail($id);
+
+        if ($user->password_reset_status === 'pending') {
+            // 1. Hapus password baru yang diminta (karena ditolak)
+            $user->requested_password = null;
+            $user->password_reset_status = 'rejected';
+            $user->password_reset_token = null;
+            $user->password_reset_expires_at = null;
+            $user->save();
+
+            // Di sini Anda bisa menambahkan notifikasi email ke user
+            
+            return back()->with('success', 'Permintaan ganti password untuk ' . $user->email . ' telah **Rejected**.');
+        }
+
+        return back()->with('error', 'Permintaan tidak valid atau sudah diproses.');
+    }
 }

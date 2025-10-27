@@ -123,4 +123,41 @@ public function register(Request $request)
 
         return redirect('/');
     }
+
+    public function showForgotPasswordForm()
+    {
+        return view('auth.forgot-password');
+    }
+
+    public function submitForgotPasswordRequest(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email|exists:users,email',
+            'new_password' => 'required|string|min:8|confirmed',
+        ], [
+            'email.exists' => 'Alamat email ini tidak terdaftar.',
+            'new_password.confirmed' => 'Konfirmasi password baru tidak cocok.',
+        ]);
+
+        // Ambil user yang mengajukan permintaan
+        $user = User::where('email', $request->email)->first();
+
+        // 1. Simpan password baru yang diminta (sudah di-hash)
+        // Admin yang akan mengaplikasikannya di panel admin
+        $user->requested_password = Hash::make($request->new_password);
+        
+        // 2. Set status permintaan menjadi 'pending'
+        $user->password_reset_status = 'pending';
+        
+        // 3. Reset token dan masa berlaku (optional, jika Anda ingin token reset via email)
+        $user->password_reset_token = \Illuminate\Support\Str::random(60); 
+        $user->password_reset_expires_at = now()->addHours(24);
+        
+        $user->save();
+
+        // Note: Dalam aplikasi nyata, di sini akan ada pengiriman email notifikasi ke Admin
+        // agar Admin tahu ada permintaan yang perlu ditinjau.
+        
+        return redirect()->route('login')->with('success', 'Permintaan ganti password telah diajukan. Kami akan meninjau dan memberitahu Anda.');
+    }
 }

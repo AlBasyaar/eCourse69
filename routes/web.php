@@ -30,11 +30,14 @@ Route::post('login', [AuthController::class, 'login']);
 Route::get('register', [AuthController::class, 'showRegistrationForm'])->name('register');
 Route::post('register', [AuthController::class, 'register']);
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('forgot-password', [AuthController::class, 'showForgotPasswordForm'])->name('password.request');
+Route::post('forgot-password', [AuthController::class, 'submitForgotPasswordRequest'])->name('password.request.submit');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('profile', [ProfileController::class, 'showProfile'])->name('profile.show');
     Route::put('profile', [ProfileController::class, 'updateProfile'])->name('profile.update');
 });
+
 
 // Admin Routes
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
@@ -62,6 +65,10 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::get('course-accesses/create', [AdminController::class, 'createCourseAccess'])->name('course_accesses.create');
     Route::post('course-accesses', [AdminController::class, 'storeCourseAccess'])->name('course_accesses.store');
     Route::put('course-accesses/{courseAccess}/toggle', [AdminController::class, 'toggleCourseAccess'])->name('course_accesses.toggle');
+
+    Route::get('password-resets', [AdminController::class, 'passwordResetRequests'])->name('password.resets.index');
+    Route::post('password-resets/{id}/accept', [AdminController::class, 'acceptPasswordReset'])->name('password.resets.accept');
+    Route::post('password-resets/{id}/reject', [AdminController::class, 'rejectPasswordReset'])->name('password.resets.reject');
 });
 
 // Mentor Routes
