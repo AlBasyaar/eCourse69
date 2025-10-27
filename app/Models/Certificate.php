@@ -13,7 +13,12 @@ class Certificate extends Model
     protected $fillable = [
         'user_id',
         'course_id',
-        'certificate_path'
+        'certificate_path',
+        'issued_at'
+    ];
+
+    protected $casts = [
+        'issued_at' => 'datetime',
     ];
 
     public function user(): BelongsTo
@@ -24,5 +29,10 @@ class Certificate extends Model
     public function course(): BelongsTo
     {
         return $this->belongsTo(Course::class);
+    }
+
+    public function finalAssignment()
+    {
+        return $this->belongsTo(FinalAssignment::class, 'final_assignment_id');
     }
 }

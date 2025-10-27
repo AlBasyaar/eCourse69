@@ -7,7 +7,8 @@
     <title>@yield('title', 'eCourse69')</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
     <style>
         html {
             scroll-behavior: smooth;
@@ -307,7 +308,8 @@
                 <!-- Logo -->
                 <div class="flex items-center">
                     <a href="/" class="flex items-center space-x-2">
-                        <img src="https://res.cloudinary.com/dr5pehdsw/image/upload/v1760316641/logo_e_course_revisi-01_kxfe5e.png" alt="eCourse69 Logo" class="w-38 h-24 rounded-lg">
+                        <img src="https://res.cloudinary.com/dr5pehdsw/image/upload/v1760316641/logo_e_course_revisi-01_kxfe5e.png"
+                            alt="eCourse69 Logo" class="w-38 h-24 rounded-lg">
                     </a>
                 </div>
 
@@ -327,74 +329,85 @@
                 <!-- Right Side -->
                 <div class="flex items-center space-x-4">
                     @guest
-                    <!-- Login & Register Buttons -->
-                    <div class="hidden md:flex items-center space-x-3">
-                        <a href="{{ route('login') }}" class="px-6 py-2 text-sm font-medium hover:text-blue-600 transition-colors">
-                            Login
-                        </a>
-                        <a href="{{ route('register') }}" class="px-6 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg hover:from-blue-600 hover:to-blue-700 transition-all">
-                            Register
-                        </a>
-                    </div>
+                        <!-- Login & Register Buttons -->
+                        <div class="hidden md:flex items-center space-x-3">
+                            <a href="{{ route('login') }}"
+                                class="px-6 py-2 text-sm font-medium hover:text-blue-600 transition-colors">
+                                Login
+                            </a>
+                            <a href="{{ route('register') }}"
+                                class="px-6 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg hover:from-blue-600 hover:to-blue-700 transition-all">
+                                Register
+                            </a>
+                        </div>
 
-                    <!-- Mobile Menu Button (Guest) -->
-                    <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg">
-                        <i class="fas fa-bars"></i>
-                    </button>
+                        <!-- Mobile Menu Button (Guest) -->
+                        <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg">
+                            <i class="fas fa-bars"></i>
+                        </button>
                     @else
-                    <!-- User Menu (Authenticated) -->
-                    <div class="hidden md:flex items-center space-x-4">
-                        <!-- Nav Links based on role -->
-                        @if(Auth::user()->role === 'admin')
-                        <a href="{{ route('admin.dashboard') }}" class="px-3 py-2 text-sm font-medium hover:text-blue-600 transition-colors">Dashboard</a>
-                        @elseif(Auth::user()->role === 'mentor')
-                        <a href="{{ route('mentor.dashboard') }}" class="px-3 py-2 text-sm font-medium hover:text-blue-600 transition-colors">Dashboard</a>
-                        @elseif(Auth::user()->role === 'student')
-                        <a href="{{ route('student.dashboard') }}" class="px-3 py-2 text-sm font-medium hover:text-blue-600 transition-colors">Dashboard</a>
-                        @endif
+                        <!-- User Menu (Authenticated) -->
+                        <div class="hidden md:flex items-center space-x-4">
+                            <!-- Nav Links based on role -->
+                            @if (Auth::user()->role === 'admin')
+                                <a href="{{ route('admin.dashboard') }}"
+                                    class="px-3 py-2 text-sm font-medium hover:text-blue-600 transition-colors">Dashboard</a>
+                            @elseif(Auth::user()->role === 'mentor')
+                                <a href="{{ route('mentor.dashboard') }}"
+                                    class="px-3 py-2 text-sm font-medium hover:text-blue-600 transition-colors">Dashboard</a>
+                            @elseif(Auth::user()->role === 'student')
+                                <a href="{{ route('student.dashboard') }}"
+                                    class="px-3 py-2 text-sm font-medium hover:text-blue-600 transition-colors">Dashboard</a>
+                            @endif
 
-                        <!-- Profile Dropdown -->
-                        <div class="relative">
-                            <button id="profile-btn" class="flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-gray-700 transition-colors">
-                                <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center">
-                                    <span class="text-white text-sm font-semibold">{{ substr(Auth::user()->name, 0, 1) }}</span>
-                                </div>
-                                <span class="text-sm font-medium">{{ Auth::user()->name }}</span>
-                                <i class="fas fa-chevron-down text-xs text-gray-500"></i>
-                            </button>
+                            <!-- Profile Dropdown -->
+                            <div class="relative">
+                                <button id="profile-btn"
+                                    class="flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-gray-700 transition-colors">
+                                    <div
+                                        class="w-8 h-8 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center">
+                                        <span
+                                            class="text-white text-sm font-semibold">{{ substr(Auth::user()->name, 0, 1) }}</span>
+                                    </div>
+                                    <span class="text-sm font-medium">{{ Auth::user()->name }}</span>
+                                    <i class="fas fa-chevron-down text-xs text-gray-500"></i>
+                                </button>
 
-                            <div id="profile-dropdown" class="dropdown-menu absolute right-0 mt-2 w-56 rounded-lg shadow-lg border py-2" style="background-color: var(--card-bg); border-color: var(--border-color);">
-                                <div class="px-4 py-3 border-b" style="border-color: var(--border-color);">
-                                    <p class="text-sm font-medium">{{ Auth::user()->name }}</p>
-                                    <p class="text-xs" style="color: var(--text-tertiary);">{{ Auth::user()->email }}</p>
+                                <div id="profile-dropdown"
+                                    class="dropdown-menu absolute right-0 mt-2 w-56 rounded-lg shadow-lg border py-2"
+                                    style="background-color: var(--card-bg); border-color: var(--border-color);">
+                                    <div class="px-4 py-3 border-b" style="border-color: var(--border-color);">
+                                        <p class="text-sm font-medium">{{ Auth::user()->name }}</p>
+                                        <p class="text-xs" style="color: var(--text-tertiary);">{{ Auth::user()->email }}
+                                        </p>
+                                    </div>
+                                    <a href="{{ route('profile.show') }}" class="block px-4 py-2 text-sm hover:bg-gray-700">
+                                        <i class="fas fa-user mr-2"></i>Profile
+                                    </a>
+                                    <form method="POST" action="{{ route('logout') }}" class="border-t mt-2 pt-2"
+                                        style="border-color: var(--border-color);">
+                                        @csrf
+                                        <button type="submit"
+                                            class="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-900/20">
+                                            <i class="fas fa-sign-out-alt mr-2"></i>Logout
+                                        </button>
+                                    </form>
                                 </div>
-                                <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-700">
-                                    <i class="fas fa-user mr-2"></i>Profile
-                                </a>
-                                <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-700">
-                                    <i class="fas fa-cog mr-2"></i>Settings
-                                </a>
-                                <form method="POST" action="{{ route('logout') }}" class="border-t mt-2 pt-2" style="border-color: var(--border-color);">
-                                    @csrf
-                                    <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-900/20">
-                                        <i class="fas fa-sign-out-alt mr-2"></i>Logout
-                                    </button>
-                                </form>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Mobile Menu Button (Authenticated) -->
-                    <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-gray-700">
-                        <i class="fas fa-bars"></i>
-                    </button>
+                        <!-- Mobile Menu Button (Authenticated) -->
+                        <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-gray-700">
+                            <i class="fas fa-bars"></i>
+                        </button>
                     @endauth
 
                 </div>
             </div>
 
             <!-- Mobile Clock & Location -->
-            <div class="lg:hidden flex items-center justify-center space-x-4 py-2 border-t" style="border-color: var(--border-color);">
+            <div class="lg:hidden flex items-center justify-center space-x-4 py-2 border-t"
+                style="border-color: var(--border-color);">
                 <div class="flex items-center space-x-2 text-xs">
                     <i class="far fa-clock"></i>
                     <span id="realtime-clock-mobile">00:00:00</span>
@@ -409,7 +422,8 @@
     </nav>
 
     <!-- Mobile Menu Sidebar -->
-    <div id="mobile-menu" class="mobile-menu fixed inset-y-0 left-0 w-64 shadow-xl z-50 overflow-y-auto" style="background-color: var(--card-bg);">
+    <div id="mobile-menu" class="mobile-menu fixed inset-y-0 left-0 w-64 shadow-xl z-50 overflow-y-auto"
+        style="background-color: var(--card-bg);">
         <div class="p-6">
             <div class="flex items-center justify-between mb-6">
                 <span class="text-xl font-bold">Menu</span>
@@ -419,40 +433,45 @@
             </div>
 
             @guest
-            <div class="space-y-3">
-                <a href="{{ route('login') }}" class="block px-4 py-3 text-center border rounded-lg hover:bg-gray-700" style="border-color: var(--border-color);">
-                    Login
-                </a>
-                <a href="{{ route('register') }}" class="block px-4 py-3 text-center text-white bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg">
-                    Register
-                </a>
-            </div>
+                <div class="space-y-3">
+                    <a href="{{ route('login') }}"
+                        class="block px-4 py-3 text-center border rounded-lg hover:bg-gray-700"
+                        style="border-color: var(--border-color);">
+                        Login
+                    </a>
+                    <a href="{{ route('register') }}"
+                        class="block px-4 py-3 text-center text-white bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg">
+                        Register
+                    </a>
+                </div>
             @else
-            <div class="space-y-2">
-                @if(Auth::user()->role === 'admin')
-                <a href="{{ route('admin.dashboard') }}" class="block px-4 py-3 hover:bg-gray-700 rounded-lg">
-                    <i class="fas fa-tachometer-alt mr-2"></i>Dashboard
-                </a>
-                @elseif(Auth::user()->role === 'mentor')
-                <a href="{{ route('mentor.dashboard') }}" class="block px-4 py-3 hover:bg-gray-700 rounded-lg">
-                    <i class="fas fa-tachometer-alt mr-2"></i>Dashboard
-                </a>
-                @elseif(Auth::user()->role === 'student')
-                <a href="{{ route('student.dashboard') }}" class="block px-4 py-3 hover:bg-gray-700 rounded-lg">
-                    <i class="fas fa-tachometer-alt mr-2"></i>Dashboard
-                </a>
-                @endif
+                <div class="space-y-2">
+                    @if (Auth::user()->role === 'admin')
+                        <a href="{{ route('admin.dashboard') }}" class="block px-4 py-3 hover:bg-gray-700 rounded-lg">
+                            <i class="fas fa-tachometer-alt mr-2"></i>Dashboard
+                        </a>
+                    @elseif(Auth::user()->role === 'mentor')
+                        <a href="{{ route('mentor.dashboard') }}" class="block px-4 py-3 hover:bg-gray-700 rounded-lg">
+                            <i class="fas fa-tachometer-alt mr-2"></i>Dashboard
+                        </a>
+                    @elseif(Auth::user()->role === 'student')
+                        <a href="{{ route('student.dashboard') }}" class="block px-4 py-3 hover:bg-gray-700 rounded-lg">
+                            <i class="fas fa-tachometer-alt mr-2"></i>Dashboard
+                        </a>
+                    @endif
 
-                <a href="#" class="block px-4 py-3 hover:bg-gray-700 rounded-lg">
-                    <i class="fas fa-user mr-2"></i>Profile
-                </a>
-                <form method="POST" action="{{ route('logout') }}" class="mt-4 pt-4 border-t" style="border-color: var(--border-color);">
-                    @csrf
-                    <button type="submit" class="block w-full text-left px-4 py-3 text-red-600 hover:bg-red-900/20 rounded-lg">
-                        <i class="fas fa-sign-out-alt mr-2"></i>Logout
-                    </button>
-                </form>
-            </div>
+                    <a href="#" class="block px-4 py-3 hover:bg-gray-700 rounded-lg">
+                        <i class="fas fa-user mr-2"></i>Profile
+                    </a>
+                    <form method="POST" action="{{ route('logout') }}" class="mt-4 pt-4 border-t"
+                        style="border-color: var(--border-color);">
+                        @csrf
+                        <button type="submit"
+                            class="block w-full text-left px-4 py-3 text-red-600 hover:bg-red-900/20 rounded-lg">
+                            <i class="fas fa-sign-out-alt mr-2"></i>Logout
+                        </button>
+                    </form>
+                </div>
             @endguest
         </div>
     </div>
@@ -463,36 +482,43 @@
     <!-- Main Content -->
     <main>
         <!-- Flash Messages -->
-        @if(session('success'))
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
-            <div class="bg-green-900/20 border border-green-800 text-green-200 px-6 py-4 rounded-lg shadow-sm" role="alert">
-                <div class="flex items-center">
-                    <i class="fas fa-check-circle text-green-500 mr-3"></i>
-                    <p class="font-medium">{{ session('success') }}</p>
-                    <button onclick="this.parentElement.parentElement.remove()" class="ml-auto text-green-500 hover:text-green-700">
-                        <i class="fas fa-times"></i>
-                    </button>
+        @if (session('success'))
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
+                <div class="bg-green-900/20 border border-green-800 text-green-200 px-6 py-4 rounded-lg shadow-sm"
+                    role="alert">
+                    <div class="flex items-center">
+                        <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                        <p class="font-medium">{{ session('success') }}</p>
+                        <button onclick="this.parentElement.parentElement.remove()"
+                            class="ml-auto text-green-500 hover:text-green-700">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
         @endif
 
-        @if(session('error'))
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
-            <div class="bg-red-900/20 border border-red-800 text-red-200 px-6 py-4 rounded-lg shadow-sm" role="alert">
-                <div class="flex items-center">
-                    <i class="fas fa-exclamation-circle text-red-500 mr-3"></i>
-                    <p class="font-medium">{{ session('error') }}</p>
-                    <button onclick="this.parentElement.parentElement.remove()" class="ml-auto text-red-500 hover:text-red-700">
-                        <i class="fas fa-times"></i>
-                    </button>
+        @if (session('error'))
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
+                <div class="bg-red-900/20 border border-red-800 text-red-200 px-6 py-4 rounded-lg shadow-sm"
+                    role="alert">
+                    <div class="flex items-center">
+                        <i class="fas fa-exclamation-circle text-red-500 mr-3"></i>
+                        <p class="font-medium">{{ session('error') }}</p>
+                        <button onclick="this.parentElement.parentElement.remove()"
+                            class="ml-auto text-red-500 hover:text-red-700">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
         @endif
 
         @yield('content')
+        
     </main>
+
+    @yield('scripts')
 
     <script>
         // Real-time Clock Function

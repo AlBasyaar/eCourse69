@@ -71,20 +71,39 @@ class AuthController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function register(Request $request)
+public function register(Request $request)
     {
-        $request->validate([
+        // 1. Ambil kode verifikasi statis dari .env
+        $verificationCode = env('VERIFICATION_CODE'); // Akan mengambil string atau null
+
+        // 2. Aturan validasi dasar
+        $rules = [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
-            'role' => 'required|in:student,mentor', // Admin biasanya didaftarkan secara manual atau seeder
-        ]);
+        ];
 
+        // 3. Tambahkan validasi untuk kode verifikasi hanya jika VERIFICATION_CODE ada di .env
+        if (!empty($verificationCode)) {
+            $rules['verification_code'] = 'required|string';
+        }
+
+        $request->validate($rules);
+
+        // 4. Lakukan pengecekan kode verifikasi secara manual (HARUS ADA SEBELUM USER DIBUAT)
+        if (!empty($verificationCode) && $request->verification_code !== $verificationCode) {
+            // Jika kode verifikasi tidak cocok, lempar error validasi
+            throw ValidationException::withMessages([
+                'verification_code' => ['Kode verifikasi yang diberikan salah.'],
+            ]);
+        }
+        
+        // 5. Buat user baru dengan peran (role) otomatis 'student'
         User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => $request->role,
+            'role' => 'student', // Peran disetel otomatis menjadi 'student'
         ]);
 
         return redirect()->route('login')->with('success', 'Registrasi berhasil! Silakan login.');

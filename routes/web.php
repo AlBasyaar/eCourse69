@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
@@ -29,6 +30,11 @@ Route::post('login', [AuthController::class, 'login']);
 Route::get('register', [AuthController::class, 'showRegistrationForm'])->name('register');
 Route::post('register', [AuthController::class, 'register']);
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('profile', [ProfileController::class, 'showProfile'])->name('profile.show');
+    Route::put('profile', [ProfileController::class, 'updateProfile'])->name('profile.update');
+});
 
 // Admin Routes
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
@@ -76,6 +82,7 @@ Route::middleware(['auth', 'role:mentor'])->prefix('mentor')->name('mentor.')->g
     Route::get('assignments', [MentorController::class, 'finalAssignments'])->name('assignments.index');
     Route::get('assignments/{assignment}', [MentorController::class, 'showAssignment'])->name('assignments.show');
     Route::put('assignments/{assignment}/feedback', [MentorController::class, 'giveFeedback'])->name('assignments.feedback');
+    Route::post('assignments/{assignment}/upload-certificate', [MentorController::class, 'uploadCertificate'])->name('assignments.upload-certificate');
 });
 
 // Student Routes

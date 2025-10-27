@@ -33,4 +33,9 @@ class FinalAssignment extends Model
     {
         return $this->belongsTo(Mentor::class);
     }
+
+    public function certificate()
+    {
+        return $this->hasOne(Certificate::class, 'final_assignment_id'); 
+    }
 }

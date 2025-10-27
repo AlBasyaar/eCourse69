@@ -49,29 +49,34 @@ class StudentController extends Controller
      * @param  \App\Models\Course  $course
      * @return \Illuminate\View\View|\Illuminate\Http\RedirectResponse
      */
-    public function showCourse(Course $course)
+  public function showCourse(Course $course)
     {
         $courseAccess = CourseAccess::where('user_id', Auth::id())
-                                    ->where('course_id', $course->id)
-                                    ->first();
+                                     ->where('course_id', $course->id)
+                                     ->first();
 
         // Jika siswa belum punya akses atau aksesnya tidak aktif
         if (!$courseAccess || !$courseAccess->is_active) {
-            // Redirect ke halaman pembayaran atau notifikasi WhatsApp admin
+            // ... (Logic redirect WhatsApp/Locked)
             $adminWhatsAppLink = 'https://wa.me/6283816927804?text=' . urlencode("Halo admin, saya ingin mengaktifkan kursus '{$course->title}'. ID kursus: {$course->id}, ID user: " . Auth::id());
             return redirect($adminWhatsAppLink);
-            // Atau tampilkan view dengan tombol ke WhatsApp
-            // return view('student.courses.locked', compact('course', 'adminWhatsAppLink'));
         }
 
-        $course->load('videos', 'finalAssignments.user', 'chats.user', 'mentor.user'); // Memuat mentor juga
+        $course->load('videos', 'finalAssignments.user', 'chats.user', 'mentor.user');
+
+        // Ambil tugas akhir siswa
         $userAssignment = FinalAssignment::where('user_id', Auth::id())
-                                         ->where('course_id', $course->id)
-                                         ->first();
+                                          ->where('course_id', $course->id)
+                                          ->first();
+        
+        // --- LOGIC BARU ---
+        // Tentukan apakah kursus sudah selesai dan sertifikat siap
+        $isCourseCompleted = $userAssignment && ($userAssignment->status === 'certificate_ready');
+        // ------------------
 
-        return view('student.courses.show', compact('course', 'userAssignment'));
+        return view('student.courses.show', compact('course', 'userAssignment', 'isCourseCompleted'));
+        // Pastikan Anda melewatkan 'isCourseCompleted' ke view
     }
-
     /**
      * Menampilkan video kursus.
      *
@@ -107,61 +112,71 @@ class StudentController extends Controller
      * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function submitAssignment(Request $request, Course $course)
-    {
-        $request->validate([
-            'assignment_file' => 'required|file|max:10240', // Max 10MB
-        ]);
+public function submitAssignment(Request $request, Course $course)
+{
+    // Cek Akses Kursus (TIDAK BERUBAH)
+    $courseAccess = CourseAccess::where('user_id', Auth::id())
+                                 ->where('course_id', $course->id)
+                                 ->where('is_active', true)
+                                 ->first();
 
-        $courseAccess = CourseAccess::where('user_id', Auth::id())
-                                    ->where('course_id', $course->id)
-                                    ->where('is_active', true)
-                                    ->first();
-
-        if (!$courseAccess) {
-            return back()->with('error', 'Anda tidak memiliki akses aktif ke kursus ini.');
-        }
-
-        // Cek apakah sudah pernah submit tugas
-        $existingAssignment = FinalAssignment::where('user_id', Auth::id())
-                                            ->where('course_id', $course->id)
-                                            ->first();
-
-        $filePath = null;
-        if ($request->hasFile('assignment_file')) {
-            // Upload ke local storage
-            $filePath = $request->file('assignment_file')->store('final_assignments', 'public');
-        }
-
-        if ($existingAssignment) {
-            // Update tugas yang sudah ada
-            // Hapus file lama dari storage jika ada
-            if ($existingAssignment->file_path && Storage::disk('public')->exists($existingAssignment->file_path)) {
-                Storage::disk('public')->delete($existingAssignment->file_path);
-            }
-
-            $existingAssignment->update([
-                'file_path' => $filePath,
-                'mentor_id' => $course->mentor_id, // Pastikan mentor_id diperbarui jika mentor kursus berubah
-                'mentor_feedback' => null, // Reset feedback
-                'status' => 'pending', // Ubah status menjadi pending lagi
-            ]);
-            $message = 'Tugas akhir berhasil diperbarui dan dikirim ulang.';
-        } else {
-            // Buat tugas baru
-            FinalAssignment::create([
-                'user_id' => Auth::id(),
-                'course_id' => $course->id,
-                'mentor_id' => $course->mentor_id, // Ambil mentor dari kursus
-                'file_path' => $filePath,
-                'status' => 'pending',
-            ]);
-            $message = 'Tugas akhir berhasil dikirim.';
-        }
-
-        return redirect()->route('student.courses.show', $course)->with('success', $message);
+    if (!$courseAccess) {
+        return back()->with('error', 'Anda tidak memiliki akses aktif ke kursus ini.');
     }
 
+    // Cek apakah sudah pernah submit tugas
+    $existingAssignment = FinalAssignment::where('user_id', Auth::id())
+                                         ->where('course_id', $course->id)
+                                         ->first();
+                                         
+    // --- LOGIC PENOLAKAN SUBMIT: FINAL/CERTIFICATE READY ---
+    if ($existingAssignment && $existingAssignment->status === 'certificate_ready') {
+        return back()->with('error', 'Kursus ini sudah selesai dan sertifikat sudah siap/diunggah. Anda tidak dapat mengirimkan tugas lagi.');
+    }
+    // --------------------------------------------------------
+
+    // --- LAKUKAN VALIDASI HANYA SEKALI DI SINI ---
+    $request->validate([
+        'assignment_file' => 'required|file|max:10240', // Max 10MB
+    ]);
+    // ---------------------------------------------
+
+    $filePath = null;
+    if ($request->hasFile('assignment_file')) {
+        // Upload ke local storage
+        $filePath = $request->file('assignment_file')->store('final_assignments', 'public');
+    }
+
+    if ($existingAssignment) {
+        // Update tugas yang sudah ada
+        // Hapus file lama dari storage jika ada
+        if ($existingAssignment->file_path && Storage::disk('public')->exists($existingAssignment->file_path)) {
+            // Pastikan Anda hanya menghapus file jika file_path baru berbeda dari yang lama
+            // (Walaupun dalam kasus upload, file_path baru pasti ada)
+            Storage::disk('public')->delete($existingAssignment->file_path);
+        }
+
+        $existingAssignment->update([
+            'file_path' => $filePath,
+            'mentor_id' => $course->mentor_id, 
+            'mentor_feedback' => null, // Reset feedback
+            'status' => 'pending', // Ubah status menjadi pending lagi
+        ]);
+        $message = 'Tugas akhir berhasil diperbarui dan dikirim ulang.';
+    } else {
+        // Buat tugas baru
+        FinalAssignment::create([
+            'user_id' => Auth::id(),
+            'course_id' => $course->id,
+            'mentor_id' => $course->mentor_id, 
+            'file_path' => $filePath,
+            'status' => 'pending',
+        ]);
+        $message = 'Tugas akhir berhasil dikirim.';
+    }
+
+    return redirect()->route('student.courses.show', $course)->with('success', $message);
+}
     /**
      * Menampilkan daftar sertifikat yang dimiliki siswa.
      *
@@ -185,10 +200,23 @@ class StudentController extends Controller
             abort(403, 'Anda tidak memiliki akses ke sertifikat ini.');
         }
 
+        // Cek status tugas akhir terkait
+        $assignment = FinalAssignment::where('user_id', Auth::id())
+                                     ->where('course_id', $certificate->course_id)
+                                     ->first();
+
+        // Cek apakah status tugas sudah 'certificate_ready'
+        if (!$assignment || $assignment->status !== 'certificate_ready') {
+            return back()->with('error', 'Sertifikat belum siap untuk diunduh. Harap tunggu mentor mengunggah file.');
+        }
+
         // Asumsi certificate_path menyimpan path di storage Laravel
-        // Pastikan file_path ada dan bisa diakses
         if ($certificate->certificate_path && Storage::disk('public')->exists($certificate->certificate_path)) {
-            return Storage::disk('public')->download($certificate->certificate_path, 'Sertifikat_' . $certificate->course->title . '.pdf');
+            // Ubah ekstensi file jika perlu, tapi kita asumsikan file yang disimpan adalah PNG/JPG
+            $extension = pathinfo($certificate->certificate_path, PATHINFO_EXTENSION);
+            $fileName = 'Sertifikat_' . $certificate->course->title . '_' . $certificate->user->name . '.' . $extension;
+            
+            return Storage::disk('public')->download($certificate->certificate_path, $fileName);
         }
 
         return back()->with('error', 'Sertifikat tidak ditemukan atau tidak dapat diunduh.');

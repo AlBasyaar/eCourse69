@@ -98,15 +98,20 @@ class MentorController extends Controller
      * @param  \App\Models\FinalAssignment  $assignment
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function giveFeedback(Request $request, FinalAssignment $assignment)
+public function giveFeedback(Request $request, FinalAssignment $assignment)
     {
         if ($assignment->mentor_id !== Auth::user()->mentor->id) {
             abort(403, 'Anda tidak memiliki akses untuk memberikan umpan balik pada tugas ini.');
         }
 
+        // Cek jika tugas sudah berstatus 'certificate_ready', maka tidak bisa diubah lagi
+        if ($assignment->status === 'certificate_ready') {
+            return back()->with('error', 'Sertifikat sudah diunggah. Tugas tidak dapat diubah lagi.');
+        }
+        
         $request->validate([
             'mentor_feedback' => 'required|string',
-            'status' => 'required|in:accepted,rejected', // 'pending', 'accepted', 'rejected'
+            'status' => 'required|in:accepted,rejected',
         ]);
 
         $assignment->update([
@@ -114,26 +119,58 @@ class MentorController extends Controller
             'status' => $request->status,
         ]);
 
-        // Jika tugas diterima, buat sertifikat
+        $message = 'Umpan balik berhasil diberikan. ';
+
         if ($request->status === 'accepted') {
-            // Logika untuk membuat sertifikat (misalnya generate PDF, simpan path)
-            // Untuk contoh ini, kita hanya akan menyimpan path placeholder
-            // Anda perlu mengganti ini dengan logika pembuatan PDF yang sebenarnya
-            $certificatePath = 'certificates/' . $assignment->user->id . '_' . $assignment->course->id . '_' . time() . '.pdf';
-
-            // Contoh sederhana: Storage::disk('public')->put($certificatePath, 'Konten sertifikat untuk ' . $assignment->user->name);
-            // Anda akan mengintegrasikan pustaka PDF generator di sini
-            // Misalnya: $pdf = App::make('dompdf.wrapper'); $pdf->loadHTML('<h1>Sertifikat</h1>...'); $pdf->save(storage_path('app/public/' . $certificatePath));
-
-            Certificate::create([
-                'user_id' => $assignment->user->id,
-                'course_id' => $assignment->course->id,
-                'certificate_path' => $certificatePath, // Ini perlu diisi dengan path file sertifikat yang sebenarnya
-            ]);
-
-            // Opsional: Kirim notifikasi ke siswa
+            $message .= 'Tugas disetujui, harap unggah sertifikat.';
+        } elseif ($request->status === 'rejected') {
+            $message .= 'Tugas perlu perbaikan.';
         }
 
-        return redirect()->route('mentor.assignments.index')->with('success', 'Umpan balik berhasil diberikan dan status tugas diperbarui.');
+        return redirect()->route('mentor.assignments.show', $assignment)->with('success', $message);
+    }
+    
+    /**
+     * Mengunggah file sertifikat (PNG) dan membuat record Certificate.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\FinalAssignment  $assignment
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function uploadCertificate(Request $request, FinalAssignment $assignment)
+    {
+        if ($assignment->mentor_id !== Auth::user()->mentor->id || $assignment->status !== 'accepted') {
+            abort(403, 'Akses ditolak atau tugas belum disetujui.');
+        }
+
+        $request->validate([
+            'certificate_file' => 'required|file|mimes:png,jpg,jpeg|max:5120', // Max 5MB, hanya PNG/JPG
+        ]);
+
+        $certificatePath = null;
+        if ($request->hasFile('certificate_file')) {
+            // Simpan file sertifikat ke storage
+            $certificatePath = $request->file('certificate_file')->store('certificates', 'public');
+        }
+
+        // Cek apakah sertifikat sudah ada untuk menghindari duplikasi
+        $certificate = Certificate::firstOrNew([
+            'user_id' => $assignment->user->id,
+            'course_id' => $assignment->course->id,
+        ]);
+
+        // Hapus file lama jika ada sebelum mengupdate
+        if ($certificate->certificate_path && Storage::disk('public')->exists($certificate->certificate_path)) {
+            Storage::disk('public')->delete($certificate->certificate_path);
+        }
+
+        $certificate->certificate_path = $certificatePath;
+        $certificate->issued_at = now(); // Tambahkan kolom issued_at di model/migration
+        $certificate->save();
+        
+        // Perbarui status tugas akhir menjadi 'certificate_ready'
+        $assignment->update(['status' => 'certificate_ready']);
+
+        return redirect()->route('mentor.assignments.show', $assignment)->with('success', 'Sertifikat berhasil diunggah dan siap diunduh oleh siswa.');
     }
 }

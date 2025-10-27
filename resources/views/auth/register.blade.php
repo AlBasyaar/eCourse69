@@ -33,7 +33,6 @@
                         @enderror
                     </div>
 
-                    <!-- Email Field -->
                     <div>
                         <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
                         <input id="email" name="email" type="email" required
@@ -44,21 +43,18 @@
                         @enderror
                     </div>
 
-                    <!-- Role Field -->
+                    {{-- **Field Role dihilangkan dari form** --}}
+
                     <div>
-                        <label for="role" class="block text-sm font-medium text-gray-700 mb-2">Daftar sebagai</label>
-                        <select id="role" name="role" required
-                            class="w-full px-4 py-3 border border-gray-300 bg-white rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 @error('role') border-red-500 @enderror">
-                            <option value="">Pilih peran</option>
-                            <option value="student" {{ old('role') == 'student' ? 'selected' : '' }}>Siswa</option>
-                            <option value="mentor" {{ old('role') == 'mentor' ? 'selected' : '' }}>Mentor</option>
-                        </select>
-                        @error('role')
+                        <label for="verification_code" class="block text-sm font-medium text-gray-700 mb-2">Kode Verifikasi Pendaftaran</label>
+                        <input id="verification_code" name="verification_code" type="text" required
+                            class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 @error('verification_code') border-red-500 @enderror"
+                            placeholder="Masukkan kode verifikasi">
+                        @error('verification_code')
                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                         @enderror
                     </div>
 
-                    <!-- Password Field -->
                     <div>
                         <label for="password" class="block text-sm font-medium text-gray-700 mb-2">Password</label>
                         <input id="password" name="password" type="password" required
@@ -69,7 +65,6 @@
                         @enderror
                     </div>
 
-                    <!-- Confirm Password Field -->
                     <div>
                         <label for="password_confirmation" class="block text-sm font-medium text-gray-700 mb-2">Konfirmasi Password</label>
                         <input id="password_confirmation" name="password_confirmation" type="password" required
@@ -77,7 +72,6 @@
                             placeholder="Konfirmasi password">
                     </div>
 
-                    <!-- Submit Button -->
                     <button type="submit" class="w-full py-3 px-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium rounded-xl transition-all duration-200 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                         <span class="flex items-center justify-center">
                             <i class="fas fa-user-plus mr-2"></i>
@@ -85,7 +79,6 @@
                         </span>
                     </button>
 
-                    <!-- Link to Login -->
                     <div class="text-center pt-4">
                         <p class="text-sm text-gray-600">
                             Sudah punya akun?
@@ -98,20 +91,16 @@
             </div>
         </div>
 
-        <!-- Illustration Section - Right Side -->
-        <div class="hidden lg:flex lg:w-1/2  from-blue-50 to-purple-50 dark:from-gray-900 dark:to-purple-900/40 items-center justify-center p-4 relative">
-            <!-- Logo positioned at top right of illustration -->
+        <div class="hidden lg:flex lg:w-1/2 from-blue-50 to-purple-50 dark:from-gray-900 dark:to-purple-900/40 items-center justify-center p-4 relative">
             <div class="absolute top-6 right-6 z-10">
                 <img src="https://res.cloudinary.com/dr5pehdsw/image/upload/v1752056700/69_uq1r75.png" alt="School Logo" class="w-16 h-16 object-contain">
             </div>
 
             <div class="w-full h-full flex flex-col items-center justify-center text-center space-y-4">
-                <!-- Main Illustration -->
                 <div class="flex-1 flex items-center justify-center">
                     <img src="https://res.cloudinary.com/dr5pehdsw/image/upload/v1756307010/rafiki_gmpthz.png" alt="Register Illustration" class="w-full h-full max-w-none object-contain">
                 </div>
 
-                <!-- Welcome Text -->
                 <div class="space-y-2 pb-8">
                     <h2 class="text-xl font-bold text-gray-800">Bergabunglah dengan Kami!</h2>
                     <p class="text-gray-600 text-sm px-4 leading-relaxed">
