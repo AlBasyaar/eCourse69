@@ -54,16 +54,18 @@
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                             {{ $mentor->created_at->format('d M Y') }}
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
-                            <a href="{{ route('admin.mentors.edit', $mentor) }}" class="text-primary hover:text-secondary">
-                                <i class="fas fa-edit"></i> Edit
-                            </a>
+                        <td class="px-4 sm:px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                    <div class="flex items-center space-x-3">
+                                        <a href="{{ route('admin.mentors.edit', $mentor) }}"
+                                           class="text-indigo-600 hover:text-indigo-900 transition">
+                                           <i class="fas fa-edit"></i>
+                                        </a>
                             <form method="POST" action="{{ route('admin.mentors.delete', $mentor) }}" class="inline"
                                 onsubmit="return confirm('Yakin ingin menghapus mentor ini?')">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="text-red-600 hover:text-red-900">
-                                    <i class="fas fa-trash"></i> Hapus
+                                    <i class="fas fa-trash"></i>
                                 </button>
                             </form>
                         </td>
