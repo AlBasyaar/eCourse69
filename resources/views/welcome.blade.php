@@ -220,7 +220,7 @@
                 </div>
                 <h3 class="text-base font-bold text-white mb-1">Muhammad Bintang</h3>
                 <p class="text-sm font-semibold text-white/90 mb-2">Web Developer</p>
-                <p class="text-xs text-white/80">Materi sangat mudah dipahami dan mentornya sangat membantu!</p>
+                <p class="text-xs text-white/80">Berkat e-Course69, saya berhasil mendapatkan pekerjaan pertama sebagai Front-end Developer.</p>
             </div>
 
             <!-- Box 2 -->
@@ -230,7 +230,7 @@
                 </div>
                 <h3 class="text-base font-bold text-white mb-1">Haikal Devin Prayata</h3>
                 <p class="text-sm font-semibold text-white/90 mb-2">Networking</p>
-                <p class="text-xs text-white/80">Berkat e-Course69, saya berhasil mendapatkan pekerjaan pertama sebagai desainer grafis.</p>
+                <p class="text-xs text-white/80">Berkat e-Course69, saya berhasil mendapatkan pekerjaan pertama sebagai Network Engginer.</p>
             </div>
 
             <!-- Box 3 -->
@@ -238,12 +238,13 @@
                 <div class="flex justify-center items-center w-14 h-14 border border-white rounded-full mb-4">
                     <span class="text-white font-semibold text-lg">03</span>
                 </div>
-                <h3 class="text-base font-bold text-white mb-1">Muhamad ilman Az Zaidan</h3>
+                <h3 class="text-base font-bold text-white mb-1">Kinan Deryl Ambia</h3>
                 <p class="text-sm font-semibold text-white/90 mb-2">Desainer Grafis</p>
                 <p class="text-xs text-white/80">Berkat e-Course69, saya berhasil mendapatkan pekerjaan pertama sebagai desainer grafis.</p>
             </div>
         </div>
     </div>
+</div>
 </div>
 
 <!-- Footer Info -->
