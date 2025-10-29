@@ -3,9 +3,61 @@
 @section('title', 'Welcome - eCourse69')
 
 @section('content')
-<!-- Hero Section -->
+
+<style>
+    .marquee-wrapper {
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .marquee-content {
+        display: inline-flex;
+        white-space: nowrap;
+        animation: marquee-animation 16s linear infinite;
+        padding-right: 50px;
+        will-change: transform;
+    }
+
+    .marquee-content:hover {
+        animation-play-state: paused;
+    }
+
+    @keyframes marquee-animation {
+        0% {
+            transform: translateX(0);
+        }
+
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+
+    .marquee-btn {
+        display: inline-block;
+        padding: 8px 16px;
+        margin-right: 2rem;
+        font-weight: 500;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+        color: #6B7280;
+        transition: color 0.3s ease-in-out;
+        white-space: nowrap;
+    }
+
+    .marquee-btn.active,
+    .marquee-btn:hover {
+        color: #3b82f6;
+    }
+
+    @media (max-width: 768px) {
+        .marquee-content {
+            animation-duration: 16s;
+        }
+    }
+</style>
+
 <div class="relative bg-white overflow-hidden">
-    <!-- Background Ellipses -->
     <div class="absolute top-0 left-0 w-96 h-96 bg-blue-300 rounded-full filter blur-3xl opacity-50 -translate-x-1/2 -translate-y-1/2"></div>
     <div class="absolute bottom-0 right-0 w-96 h-96 bg-blue-100 rounded-full filter blur-3xl opacity-60 translate-x-1/3 translate-y-1/3"></div>
 
@@ -56,22 +108,34 @@
     </div>
 </div>
 
-<!-- Category Tabs -->
-<div class="bg-white border-b border-gray-200">
+<div class="bg-white border-b border-gray-200 py-4">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex overflow-x-auto lg:justify-center space-x-8 py-4">
-            <button class="whitespace-nowrap text-white-500 pb-2 font-medium text-sm">
-                Sistem Informasi Jaringan dan Aplikasi
-            </button>
-            <button class="whitespace-nowrap text-[#3b82f6] hover:text-[#60a5fa] pb-2 font-medium text-sm">
-                Sistem Informasi Jaringan dan Aplikasi
-            </button>
-            <button class="whitespace-nowrap text-white-500 hover:text-white-700 pb-2 font-medium text-sm">
-                Sistem Informasi Jaringan dan Aplikasi
-            </button>
+        <div class="marquee-wrapper">
+            <div class="marquee-content">
+                <button class="marquee-btn text-blue-600 active">
+                    Sistem Informasi Jaringan dan Aplikasi
+                </button>
+                <button class="marquee-btn">
+                    Sistem Informasi Jaringan dan Aplikasi
+                </button>
+                <button class="marquee-btn">
+                    Sistem Informasi Jaringan dan Aplikasi
+                </button>
+
+                <button class="marquee-btn text-blue-600 active" aria-hidden="true">
+                    Sistem Informasi Jaringan dan Aplikasi
+                </button>
+                <button class="marquee-btn" aria-hidden="true">
+                    Sistem Informasi Jaringan dan Aplikasi
+                </button>
+                <button class="marquee-btn" aria-hidden="true">
+                    Sistem Informasi Jaringan dan Aplikasi
+                </button>
+            </div>
         </div>
     </div>
 </div>
+
 
 <!-- About Section -->
 <div class="py-16 bg-white relative overflow-hidden">
@@ -140,7 +204,6 @@
 
 <!-- Testimonials -->
 <div class="py-16 bg-white relative overflow-hidden">
-    <!-- Background Ellipses -->
     <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-200 rounded-full filter blur-3xl opacity-50 -translate-x-1/3 translate-y-1/2"></div>
     <div class="absolute top-1/3 left-20 w-72 h-72 bg-white rounded-full filter blur-2xl opacity-60"></div>
 
@@ -149,45 +212,35 @@
             Mengapa <span class="text-blue-400">eCourse69?</span>
         </h2>
 
-        <div class="grid md:grid-cols-4 gap-6 mt-12">
-            <!-- Testimonial 1 - White Card -->
-            <div class="bg-gradient-to-br from-blue-400 to-blue-500 rounded-3xl p-6 text-center shadow-md hover:shadow-lg transition-all duration-300">
-                <div class="inline-flex items-center justify-center w-16 h-16 bg-white/30 backdrop-blur-sm rounded-full mb-6">
-                    <span class="text-2xl font-bold text-white-400">01</span>
+        <div class="flex flex-wrap justify-center gap-8 mt-12">
+            <!-- Box 1 -->
+            <div class="bg-gradient-to-br from-blue-400 to-blue-600 rounded-3xl p-6 text-center shadow-md hover:shadow-lg transition-all duration-300 w-64 flex flex-col items-center">
+                <div class="flex justify-center items-center w-14 h-14 border border-white rounded-full mb-4">
+                    <span class="text-white font-semibold text-lg">01</span>
                 </div>
-                <h3 class="text-base font-bold text-white mb-2">Muhammad Bintang</h3>
-                <p class="text-sm font-semibold text-white/900 mb-3">Web Developer</p>
-                <p class="text-xs text-white/800">Materi sangat mudah dipahami dan mentornya sangat membantu!</p>
+                <h3 class="text-base font-bold text-white mb-1">Muhammad Bintang</h3>
+                <p class="text-sm font-semibold text-white/90 mb-2">Web Developer</p>
+                <p class="text-xs text-white/80">Materi sangat mudah dipahami dan mentornya sangat membantu!</p>
             </div>
 
-            <!-- Testimonial 2 - Blue Card -->
-            <div class="bg-gradient-to-br from-blue-400 to-blue-500 rounded-3xl p-6 text-center shadow-md hover:shadow-lg transition-all duration-300">
-                <div class="inline-flex items-center justify-center w-16 h-16 bg-white/30 backdrop-blur-sm rounded-full mb-6">
-                    <span class="text-2xl font-bold text-white">02</span>
+            <!-- Box 2 -->
+            <div class="bg-gradient-to-br from-blue-400 to-blue-600 rounded-3xl p-6 text-center shadow-md hover:shadow-lg transition-all duration-300 w-64 flex flex-col items-center">
+                <div class="flex justify-center items-center w-14 h-14 border border-white rounded-full mb-4">
+                    <span class="text-white font-semibold text-lg">02</span>
                 </div>
-                <h3 class="text-base font-bold text-white mb-2">Haikal Devin Prayata</h3>
-                <p class="text-sm font-semibold text-white/90 mb-3">Networking</p>
+                <h3 class="text-base font-bold text-white mb-1">Haikal Devin Prayata</h3>
+                <p class="text-sm font-semibold text-white/90 mb-2">Networking</p>
                 <p class="text-xs text-white/80">Berkat e-Course69, saya berhasil mendapatkan pekerjaan pertama sebagai desainer grafis.</p>
             </div>
 
-            <!-- Testimonial 3 - Blue Card -->
-            <div class="bg-gradient-to-br from-blue-400 to-blue-500 rounded-3xl p-6 text-center shadow-md hover:shadow-lg transition-all duration-300">
-                <div class="inline-flex items-center justify-center w-16 h-16 bg-white/30 backdrop-blur-sm rounded-full mb-6">
-                    <span class="text-2xl font-bold text-white">03</span>
+            <!-- Box 3 -->
+            <div class="bg-gradient-to-br from-blue-400 to-blue-600 rounded-3xl p-6 text-center shadow-md hover:shadow-lg transition-all duration-300 w-64 flex flex-col items-center">
+                <div class="flex justify-center items-center w-14 h-14 border border-white rounded-full mb-4">
+                    <span class="text-white font-semibold text-lg">03</span>
                 </div>
-                <h3 class="text-base font-bold text-white mb-2">Muhamad ilman Az Zaidan</h3>
-                <p class="text-sm font-semibold text-white/90 mb-3">Desainer Grafis</p>
+                <h3 class="text-base font-bold text-white mb-1">Muhamad ilman Az Zaidan</h3>
+                <p class="text-sm font-semibold text-white/90 mb-2">Desainer Grafis</p>
                 <p class="text-xs text-white/80">Berkat e-Course69, saya berhasil mendapatkan pekerjaan pertama sebagai desainer grafis.</p>
-            </div>
-
-            <!-- Testimonial 4 - Blue Card -->
-            <div class="bg-gradient-to-br from-blue-400 to-blue-500 rounded-3xl p-6 text-center shadow-md hover:shadow-lg transition-all duration-300">
-                <div class="inline-flex items-center justify-center w-16 h-16 bg-white/30 backdrop-blur-sm rounded-full mb-6">
-                    <span class="text-2xl font-bold text-white">04</span>
-                </div>
-                <h3 class="text-base font-bold text-white mb-2">Serli Santiono</h3>
-                <p class="text-sm font-semibold text-white/90 mb-3">MARKETING</p>
-                <p class="text-xs text-white/80">Platform yang bagus untuk belajar skill baru dengan fleksibel.</p>
             </div>
         </div>
     </div>
@@ -196,8 +249,7 @@
 <!-- Footer Info -->
 <div id="footer" class="relative bg-white py-12 overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Blue rounded container with shadow -->
-        <div class="bg-gradient-to-br rounded-[4rem] shadow-2xl px-16 py-20 relative overflow-visible">
+        <div class="bg-gradient-to-br from-blue-400 to-blue-600 rounded-[4rem] shadow-2xl px-16 py-20 relative overflow-visible">
 
             <div class="relative grid md:grid-cols-2 gap-16 items-center">
                 <div class="text-white">
