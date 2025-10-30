@@ -98,6 +98,8 @@ Route::middleware(['auth', 'role:student'])->prefix('student')->name('student.')
     Route::get('courses', [StudentController::class, 'courses'])->name('courses.index');
     Route::get('courses/{course}', [StudentController::class, 'showCourse'])->name('courses.show');
     Route::get('courses/{course}/videos/{video}', [StudentController::class, 'showVideo'])->name('courses.video');
+    Route::get('/courses/{course}/videos/{video}/download-material', [StudentController::class, 'downloadMaterial'])
+         ->name('courses.video.download-material');
     Route::post('courses/{course}/submit-assignment', [StudentController::class, 'submitAssignment'])->name('courses.submitAssignment');
 
     Route::get('certificates', [StudentController::class, 'certificates'])->name('certificates.index');

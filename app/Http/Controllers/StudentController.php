@@ -221,4 +221,39 @@ public function submitAssignment(Request $request, Course $course)
 
         return back()->with('error', 'Sertifikat tidak ditemukan atau tidak dapat diunduh.');
     }
+
+    public function downloadMaterial(Course $course, CourseVideo $video)
+    {
+        // 1. Guard: Pastikan video milik kursus yang benar
+        if ($video->course_id !== $course->id) {
+            abort(404);
+        }
+
+        // 2. Guard: Pastikan siswa memiliki akses aktif ke kursus
+        $courseAccess = CourseAccess::where('user_id', Auth::id())
+                                    ->where('course_id', $course->id)
+                                    ->where('is_active', true)
+                                    ->first();
+
+        if (!$courseAccess) {
+            return back()->with('error', 'Anda tidak memiliki akses aktif ke kursus ini.');
+        }
+
+        // 3. Cek apakah ada material_url
+        if (!$video->material_url || !Storage::disk('public')->exists($video->material_url)) {
+            return back()->with('error', 'File materi tidak ditemukan.');
+        }
+
+        // 4. Proses Download
+        $path = $video->material_url;
+        
+        // Ambil nama file asli (atau buat nama file yang bersih)
+        $extension = pathinfo($path, PATHINFO_EXTENSION);
+        $fileName = 'Materi_' . $video->title . '.' . $extension;
+        
+        // Ganti karakter yang tidak aman untuk nama file (misalnya strip)
+        $fileName = str_replace([' ', '/', '\\'], '_', $fileName); 
+
+        return Storage::disk('public')->download($path, $fileName);
+    }
 }

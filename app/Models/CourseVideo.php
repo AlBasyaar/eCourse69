@@ -14,7 +14,8 @@ class CourseVideo extends Model
         'course_id',
         'title',
         'description',
-        'cloudinary_url'
+        'cloudinary_url',
+        'material_url'
     ];
 
     public function course(): BelongsTo
