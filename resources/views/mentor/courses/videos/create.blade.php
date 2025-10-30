@@ -7,7 +7,7 @@
             <div class="flex items-center justify-between">
                 <div>
                     <h1 class="text-3xl font-bold text-gray-900">Tambahkan Video Baru</h1>
-                    <p class="mt-2 text-gray-600">Unggah video dan materi pendukung untuk kursus: **{{ $course->title }}**</p>
+                    <p class="mt-2 text-gray-600">Unggah video dan materi pendukung untuk kursus: {{ $course->title }}</p>
                 </div>
             </div>
         </div>
@@ -48,12 +48,10 @@
                                 <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                             @enderror
                         </div>
-
-                        ---
                         
                         <div>
                             <label for="material_file" class="block text-sm font-medium text-gray-700 mb-2">
-                                <i class="fas fa-file-alt mr-2 text-green-500"></i>Upload Materi (PDF/Dokumen) - **Opsional**
+                                <i class="fas fa-file-alt mr-2 text-green-500"></i>Upload Materi (PDF/Dokumen) - Opsional
                             </label>
                             <div id="material-dropzone" class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg hover:border-green-400 transition-colors cursor-pointer">
                                 <div class="space-y-1 text-center">
@@ -65,7 +63,7 @@
                                         </label>
                                         <p class="pl-1">atau seret dan letakkan</p>
                                     </div>
-                                    <p class="text-xs text-gray-500">PDF, DOC, PPT, XLS hingga **50MB**</p>
+                                    <p class="text-xs text-gray-500">PDF, DOC, PPT, XLS hingga 50MB</p>
                                 </div>
                             </div>
                             <p id="material-preview" class="mt-2 text-sm font-medium text-left pl-2 flex items-center space-x-2"></p>
@@ -74,11 +72,10 @@
                             @enderror
                         </div>
 
-                        ---
                         
                         <div>
                             <label for="video_file" class="block text-sm font-medium text-gray-700 mb-2">
-                                <i class="fas fa-upload mr-2 text-blue-500"></i>File Video - **Wajib**
+                                <i class="fas fa-upload mr-2 text-blue-500"></i>File Video Wajib
                             </label>
                             <div id="video-dropzone" class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg hover:border-blue-400 transition-colors cursor-pointer">
                                 <div class="space-y-1 text-center">
